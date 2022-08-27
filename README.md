@@ -1,0 +1,3 @@
+# README
+
+simple rails project
