@@ -18,5 +18,8 @@ module RailsApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.action_controller.default_url_options = { :trailing_slash => true }
+    config.middleware.use Rack::AppendTrailingSlash
   end
 end
