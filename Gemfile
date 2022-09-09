@@ -70,7 +70,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-group :production do
-  gem "sqlite3", "~> 1.4"
-end
