@@ -34,6 +34,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/public/yip
+/public/yip/lr1
+/public/yip/lr2
+/public/yip/lr3
+/public/yip/lr4
 
 /config/secrets.yml
