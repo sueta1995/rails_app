@@ -1,5 +1,5 @@
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
@@ -13,5 +13,5 @@ footer {
 }
 
 #end-list {
-    padding-bottom: 20%;
+    padding-bottom: 5%;
 }
