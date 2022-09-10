@@ -3,3 +3,17 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+.fw-bolder {
+    padding-top: 3%;
+}
+
+@media screen and (max-width: 1200px), screen and (max-height: 1200px) {
+    footer {
+        position: relative;
+    }
+
+    main {
+        padding-bottom: 15%;
+    }
+}
