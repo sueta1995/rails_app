@@ -1,0 +1,17 @@
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.list-group {
+    padding-bottom: 3%;
+}
+
+.fw-bolder {
+    padding-top: 3%;
+}
+
+#end-list {
+    padding-bottom: 5%;
+}
