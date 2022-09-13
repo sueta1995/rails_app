@@ -31,10 +31,7 @@
 
 /public/assets
 
-/public/static/lr1/*
-/public/static/lr2/*
-/public/static/lr3/*
-/public/static/lr4/*
+/public/static/*
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
