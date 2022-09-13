@@ -31,12 +31,12 @@
 
 /public/assets
 
+/public/static/lr1/*
+/public/static/lr2/*
+/public/static/lr3/*
+/public/static/lr4/*
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-
-/public/yip/lr1
-/public/yip/lr2
-/public/yip/lr3
-/public/yip/lr4
 
 /config/secrets.yml
