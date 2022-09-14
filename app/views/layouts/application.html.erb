@@ -33,16 +33,39 @@
               <li class="nav-item">
                 <a class="nav-link" href="/contacts">Контакты</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/session/new">Авторизация</a>
-              </li>
+            </ul>
+            <ul class="nav justify-content-end">
+              <% if current_user.present? %>
+                <li class="nav-item">
+                  <a class="nav-link disabled"><%= "#{current_user.nickname}" %></a>
+                </li>
+                <li class="nav-item">
+                  <%= button_to 'Выйти', session_path, method: :delete, class: "btn btn-link btn-sm nav-link link-secondary" %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <a class="nav-link link-secondary" href="/session/new">Авторизация</a>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div>
       </nav>
 	  </header>
 
-    <%= yield %>
+    <main class="container">
+      <% if flash[:notice].present?%>
+        <div class="alert alert-dark" role="alert">
+          <%= flash[:notice] %>
+        </div>
+      <% elsif flash[:alert].present?%>
+        <div class="alert alert-dark" role="alert">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </main>
 
     <footer class="bg-dark text-center text-white">
       <!-- Copyright -->

@@ -9,12 +9,19 @@ class SessionsController < ApplicationController
 
     if user.present?
       session[:user_id] = user.id 
+      session[:nickname] = user.nickname
       
-      redirect_to '/'
+      redirect_to root_path, notice: 'Вы упешно зашли на сайт!'
     else
-      flash[:alert] = 'Неправильный email или пароль!'
+      flash.now[:alert] = 'Неправильный email или пароль!'
 
       render :new
    end
+  end
+
+  def destroy
+    session.delete(:user_id)
+
+    redirect_to root_path, notice: "Вы вышли из аккаунта"
   end
 end
