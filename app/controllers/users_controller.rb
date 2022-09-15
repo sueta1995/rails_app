@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    user_params = params.require(:user).permit(:nickname, :email)
+    user_params = params.require(:user).permit(:nickname, :email, :password)
 
     User.create(user_params)
 
