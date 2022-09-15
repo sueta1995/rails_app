@@ -1,16 +1,36 @@
-<h2 class="title">Регистрация</h2>
+<%= form_with model: @user do |form| %>
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white">
+          <div class="card-body p-5 text-center">
 
-<div class="mt">
-	<%= form_with model: @user do |form| %>
-		<p class="mt"><%= form.label :nickname, 'Ваш никнейм' %></p>
-		<p><%= form.text_field :nickname, class: 'form-text-field' %></p>
+            <div class="mb-md-5 mt-md-4 pb-5">
 
-		<p class="mt"><%= form.label :email %></p>
-		<p><%= form.text_field :email, class: 'form-text-field' %></p>
+              <h2 class="fw-bold mb-2 text-uppercase">Регистрация</h2>
+              <p class="text-white-50 mb-5">Введите следующие данные</p>
 
-		<p class="mt"><%= form.label :password %></p>
-		<p><%= form.password_field :password, class: 'form-text-field' %></p>
+							<div class="form-outline form-white mb-4">
+                <%= form.text_field :nickname, class: 'form-control form-control-lg', :required => true %>
+								<%= form.label :nickname, 'Ваш никнейм', class: "form-label" %>
+              </div>
 
-		<p class="mt-lg"><%= form.submit 'Зарегистрироваться', class: 'button button-main'%>
-	<% end %>
-</div>
+              <div class="form-outline form-white mb-4">
+								<%= form.text_field :email, class: 'form-control form-control-lg', :required => true %>
+								<%= form.label :email, class: "form-label" %>
+			  			</div>
+
+              <div class="form-outline form-white mb-4">
+                <%= form.password_field :password, class: 'form-control form-control-lg', :required => true %>
+								<%= form.label :password, class: "form-label" %>
+              </div>
+
+							<%= form.submit 'Зарегистрироваться', class: 'btn btn-outline-light btn-lg px-5'%>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
