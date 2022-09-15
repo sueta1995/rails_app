@@ -1,6 +1,6 @@
 # Описание проекта rails_app
 
-Данное приложение реализовано на Ubuntu Server 22.04 LTS с помощью nginx + passernger.
+Данное приложение реализовано на Ubuntu Server 22.04 LTS с помощью nginx + passenger.
 
 ### Зависимости:
 
