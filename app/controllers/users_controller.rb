@@ -19,7 +19,18 @@ class UsersController < ApplicationController
     else
       User.create(user_params)
 
-      redirect_to root_path, notice: 'Вы успешно зарегистрировались'
+      redirect_to root_path, notice: 'Вы успешно зарегистрировались!'
     end
+  end
+
+  def show
+    @user_required = User.find_by(id: params[:user_id])
+  end
+
+  def destroy
+    session.delete(:user_id)
+    User.find(params[:id]).delete
+
+    redirect_to root_path, notice: 'Аккаунт удален!'
   end
 end

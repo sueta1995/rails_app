@@ -1,0 +1,20 @@
+<% if @user_required.present? %>
+	<h1 class="display-6">Информация о пользователе</h1>
+
+	<p class="fs-5 mt-5 fw-bolder">identifier:</p>
+	<p class="fs-5 fw-lighter"><%= "#{@user_required[:id]}" %></p>
+
+	<p class="fs-5 mt-5 fw-bolder">Никнейм:</p>
+	<p class="fs-5 fw-lighter"><%= "#{@user_required[:nickname]}" %></p>
+
+	<p class="fs-5 mt-5 fw-bolder">Email:</p>
+	<p class="fs-5 fw-lighter"><%= "#{@user_required[:email]}" %></p>
+
+	<% if @user_required == current_user %>
+		<p><%= button_to "Удалить аккаунт", "", method: :delete, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
+	<% end %>
+
+<% else %>
+	<h1 class="display-6">Данный пользователь не существует!</h1>
+
+<% end %>

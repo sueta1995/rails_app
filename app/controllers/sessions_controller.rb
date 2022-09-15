@@ -16,12 +16,12 @@ class SessionsController < ApplicationController
       flash.now[:alert] = 'Неправильный email или пароль!'
 
       render :new
-   end
+    end
   end
 
   def destroy
     session.delete(:user_id)
 
-    redirect_to root_path, notice: "Вы вышли из аккаунта"
+    redirect_to root_path, notice: "Вы вышли из аккаунта!"
   end
 end

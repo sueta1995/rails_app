@@ -37,7 +37,7 @@
             <ul class="nav justify-content-end">
               <% if current_user.present? %>
                 <li class="nav-item">
-                  <a class="nav-link disabled"><%= "#{current_user.nickname}" %></a>
+                  <%= link_to "#{current_user.nickname}", "/users/#{current_user.id}", class: "btn btn-link btn-sm nav-link link-secondary" %>
                 </li>
                 <li class="nav-item">
                   <%= button_to 'Выйти', session_path, method: :delete, class: "btn btn-link btn-sm nav-link link-secondary" %>
