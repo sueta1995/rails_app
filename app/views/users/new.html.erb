@@ -1,36 +1,40 @@
-<%= form_with model: @user, data: {turbo: false} do  |form| %>
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card bg-dark text-white">
-          <div class="card-body p-5 text-center">
+<% if current_user.nil? %>
+  <%= form_with model: @user, data: {turbo: false} do  |form| %>
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white">
+            <div class="card-body p-5 text-center">
 
-            <div class="mb-md-5 mt-md-4 pb-5">
+              <div class="mb-md-5 mt-md-4 pb-5">
 
-              <h2 class="fw-bold mb-2 text-uppercase">Регистрация</h2>
-              <p class="text-white-50 mb-5">Введите следующие данные</p>
+                <h2 class="fw-bold mb-2 text-uppercase">Регистрация</h2>
+                <p class="text-white-50 mb-5">Введите следующие данные</p>
 
-							<div class="form-outline form-white mb-4">
-                <%= form.text_field :nickname, class: 'form-control form-control-lg', :required => true %>
-								<%= form.label :nickname, 'Ваш никнейм', class: "form-label" %>
+                <div class="form-outline form-white mb-4">
+                  <%= form.text_field :nickname, class: 'form-control form-control-lg', :required => true %>
+                  <%= form.label :nickname, 'Ваш никнейм', class: "form-label" %>
+                </div>
+
+                <div class="form-outline form-white mb-4">
+                  <%= form.text_field :email, class: 'form-control form-control-lg', :required => true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" %>
+                  <%= form.label :email, class: "form-label" %>
+                </div>
+
+                <div class="form-outline form-white mb-4">
+                  <%= form.password_field :password, class: 'form-control form-control-lg', :required => true %>
+                  <%= form.label :password, class: "form-label" %>
+                </div>
+
+                <%= form.submit 'Зарегистрироваться', class: 'btn btn-outline-light btn-lg px-5'%>
               </div>
 
-              <div class="form-outline form-white mb-4">
-								<%= form.text_field :email, class: 'form-control form-control-lg', :required => true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" %>
-								<%= form.label :email, class: "form-label" %>
-			  			</div>
-
-              <div class="form-outline form-white mb-4">
-                <%= form.password_field :password, class: 'form-control form-control-lg', :required => true %>
-								<%= form.label :password, class: "form-label" %>
-              </div>
-
-							<%= form.submit 'Зарегистрироваться', class: 'btn btn-outline-light btn-lg px-5'%>
             </div>
-
           </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
+<% else %>
+  <% controller.redirect_to root_path, notice: "Вы уже вошли в аккаунт!" %>
 <% end %>

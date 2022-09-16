@@ -17,9 +17,11 @@ class UsersController < ApplicationController
 
       render :new
     else
-      User.create(user_params)
+      session[:ver_code] = (0...6).map { ('0'..'9').to_a[rand(10)] }.join
+      session[:ver_params] = user_params
 
-      redirect_to root_path, notice: 'Вы успешно зарегистрировались!'
+      # Здесь потом будет отправка письма с кодом
+      redirect_to '/verifications/new', notice: session[:ver_code]
     end
   end
 

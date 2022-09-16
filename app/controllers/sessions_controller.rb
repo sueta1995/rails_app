@@ -11,9 +11,9 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id 
       session[:nickname] = user.nickname
       
-      redirect_to root_path, notice: 'Вы упешно зашли на сайт!'
+      redirect_to root_path, notice: 'Вы упешно зашли в аккаунт!'
     else
-      flash.now[:alert] = 'Неправильный email или пароль!'
+      flash.now[:alert] = 'Неправильные email или пароль!'
 
       render :new
     end
