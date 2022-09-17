@@ -6,8 +6,13 @@ class UserMailer < ApplicationMailer
   #   en.user_mailer.send_code.subject
   #
   def send_code
-    @greeting = "Hi"
+    @user = params[:user]
+    @code = params[:code]
+    @greeting = "Привет, #{@user[:nickname]}"
 
-    mail to: "to@example.org"
+    mail(
+      to: @user[:email]
+      subject: "Проверочный код для регистрации: #{@code}"
+    )
   end
 end

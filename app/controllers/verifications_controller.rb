@@ -7,7 +7,7 @@ class VerificationsController < ApplicationController
 
     if verifications_form_code == session[:ver_code]
       User.create(session[:ver_params])
-
+      
       session.delete(:ver_code)
       session.delete(:ver_params)
 

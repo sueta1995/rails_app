@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       session[:ver_code] = (0...6).map { ('0'..'9').to_a[rand(10)] }.join
       session[:ver_params] = user_params
 
-      # Здесь потом будет отправка письма с кодом
+      UserMailer.with(user: session[:ver_params], code: session[:ver_code]).send_code.deliver_now
       redirect_to '/verifications/new', notice: session[:ver_code]
     end
   end
