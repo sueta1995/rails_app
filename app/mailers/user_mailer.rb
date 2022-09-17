@@ -11,7 +11,7 @@ class UserMailer < ApplicationMailer
     @greeting = "Привет, #{@user[:nickname]}"
 
     mail(
-      to: @user[:email]
+      to: @user[:email],
       subject: "Проверочный код для регистрации: #{@code}"
     )
   end
