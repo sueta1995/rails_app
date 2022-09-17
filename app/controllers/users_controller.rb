@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       session[:ver_params] = user_params
 
       UserMailer.with(user: session[:ver_params], code: session[:ver_code]).send_code.deliver_now
-      redirect_to '/verifications/new', notice: session[:ver_code]
+      redirect_to '/verifications/new'
     end
   end
 

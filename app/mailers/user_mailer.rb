@@ -12,7 +12,7 @@ class UserMailer < ApplicationMailer
 
     mail(
       to: @user[:email],
-      subject: "Проверочный код для регистрации: #{@code}"
+      subject: "Регистрация на сайте"
     )
   end
 end
