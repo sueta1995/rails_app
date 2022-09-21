@@ -1,5 +1,9 @@
 <% if @user_required.present? %>
-	<h1 class="display-6">Информация о пользователе</h1>
+	<h1 class="display-6">Информация о пользователе 
+		<% if BannedUser.find_by(user_id: @user_required[:id]).present?%>
+			<span class="text-danger fw-bold">(заблокирован)</span>
+		<% end %>
+	</h1>
 
 	<p class="fs-5 mt-5 fw-bolder">identifier:</p>
 	<p class="fs-5 fw-lighter"><%= "#{@user_required[:id]}" %></p>

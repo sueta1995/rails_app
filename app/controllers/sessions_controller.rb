@@ -8,10 +8,18 @@ class SessionsController < ApplicationController
     user = User.find_by(email: user_params[:email])&.authenticate(user_params[:password])
 
     if user.present?
-      session[:user_id] = user.id 
-      session[:nickname] = user.nickname
+      ban_status = BannedUser.find_by(user_id: user.id)
+
+      if ban_status.present?
+        flash.now[:alert] = "Вы не можете зайти в этот аккаунт, так как он заблокирован по причине: #{ban_status.reason}!"
+
+        render :new
+      else
+        session[:user_id] = user.id 
+        session[:nickname] = user.nickname
       
-      redirect_to root_path, notice: 'Вы упешно зашли в аккаунт!'
+        redirect_to root_path, notice: 'Вы упешно зашли в аккаунт!'
+      end
     else
       flash.now[:alert] = 'Неправильные email или пароль!'
 

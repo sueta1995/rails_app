@@ -21,5 +21,7 @@ module RailsApp
 
     config.action_controller.default_url_options = { :trailing_slash => true }
     config.middleware.use Rack::AppendTrailingSlash
+
+    config.force_ssl = true
   end
 end
