@@ -7,7 +7,7 @@
 ```
 Ruby: 3.0.0
 Ruby on Rails: 7.0.3.1
-SQLite3: 1.4
+Postgres: 14.5
 Bootstrap: 5.2.0
 jQuery: 3.6.1
 nginx: 1.18.0 (Ubuntu)
