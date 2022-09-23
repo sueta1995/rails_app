@@ -65,6 +65,15 @@
         </div>
       <% end %>
 
+      <% if current_user.present? %>
+        <% if BannedUser.find_by(user_id: current_user.id).present? %>
+          <% session.delete(:user_id) %>
+          <div class="alert alert-danger" role="alert">
+            <span class="fw-bold">Вы были заблокированы!</span>
+          </div>
+        <% end %>
+      <% end %>
+      
       <%= yield %>
     </main>
 
