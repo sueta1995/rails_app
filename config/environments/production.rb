@@ -102,4 +102,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_dispatch.x_sendfile_header = 'X-Sendfile' unless 
+  config.public_file_server.enabled
 end
