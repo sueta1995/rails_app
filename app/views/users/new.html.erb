@@ -13,7 +13,7 @@
 
                 <div class="form-outline form-white mb-4">
                   <%= form.label :nickname, 'Ваш никнейм', class: "form-label" %>
-                  <%= form.text_field :nickname, class: 'form-control form-control-lg', :required => true %>
+                  <%= form.text_field :nickname, class: 'form-control form-control-lg', :required => true, pattern: "^[a-zA-Z][a-zA-Z0-9-_]+$" %>
                 </div>
 
                 <div class="form-outline form-white mb-4">
@@ -26,7 +26,7 @@
                   <%= form.password_field :password, class: 'form-control form-control-lg', :required => true, autocomplete: "new-password" %>
                 </div>
 
-                <%= form.submit 'Зарегистрироваться', class: 'btn btn-outline-light btn-lg px-5'%>
+                <%= form.submit 'Зарегистрироваться', class: 'btn btn-outline-light btn-lg'%>
               </div>
 
             </div>
