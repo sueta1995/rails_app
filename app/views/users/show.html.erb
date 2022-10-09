@@ -20,16 +20,18 @@
 	<p class="fs-5 mt-5 fw-bolder">Подписки:</p>
 	<p class="fs-5 fw-lighter"><%= Subscription.where(follower_id: @user_required[:id]).count %></p>
 
-	<% if @user_required == current_user %>
-		<p><%= button_to "Удалить аккаунт", "", method: :delete, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
+  <% if !current_user.nil? %>
+    <% if @user_required == current_user %>
+      <p><%= button_to "Удалить аккаунт", "", method: :delete, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
 
-	<% else %>
-    <% if Subscription.find_by(user_id: @user_required[:id], follower_id: current_user[:id]).present? %>
-      <p><%= button_to "Отписаться", subscription_path, params: { id: @user_required[:id] }, method: :delete, class: "btn btn-dark fs-5 mt-5" %></p>
     <% else %>
-      <p><%= button_to "Подписаться", subscriptions_path, params: { id: @user_required[:id] }, method: :post, class: "btn btn-dark fs-5 mt-5" %></p>
+      <% if Subscription.find_by(user_id: @user_required[:id], follower_id: current_user[:id]).present? %>
+        <p><%= button_to "Отписаться", subscription_path, params: { id: @user_required[:id] }, method: :delete, class: "btn btn-dark fs-5 mt-5" %></p>
+      <% else %>
+        <p><%= button_to "Подписаться", subscriptions_path, params: { id: @user_required[:id] }, method: :post, class: "btn btn-dark fs-5 mt-5" %></p>
+      <% end %>
     <% end %>
-	<% end %>
+  <% end %>
 
 <% else %>
 	<h1 class="display-6">Данный пользователь не существует!</h1>
