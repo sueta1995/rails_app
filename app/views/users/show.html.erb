@@ -15,15 +15,20 @@
 	<p class="fs-5 fw-lighter"><%= "#{@user_required[:email]}" %></p>
 
 	<p class="fs-5 mt-5 fw-bolder">Подписчики:</p>
-	<p class="fs-5 fw-lighter">0</p>
+	<p class="fs-5 fw-lighter"><%= Subscription.where(user_id: @user_required[:id]).count %></p>
 
 	<p class="fs-5 mt-5 fw-bolder">Подписки:</p>
-	<p class="fs-5 fw-lighter">0</p>
-
-	<p><button class="btn btn-dark fs-5 mt-5">Подписаться</button></p>
+	<p class="fs-5 fw-lighter"><%= Subscription.where(user_id: current_user[:id]).count %></p>
 
 	<% if @user_required == current_user %>
 		<p><%= button_to "Удалить аккаунт", "", method: :delete, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
+
+	<% else %>
+    <% if Subscription.find_by(user_id: @user_required[:id], follower_id: current_user[:id]).present? %>
+      <p><%= button_to "Отписаться", subscription_path, params: { id: @user_required[:id] }, method: :delete, class: "btn btn-dark fs-5 mt-5" %></p>
+    <% else %>
+      <p><%= button_to "Подписаться", subscriptions_path, params: { id: @user_required[:id] }, method: :post, class: "btn btn-dark fs-5 mt-5" %></p>
+    <% end %>
 	<% end %>
 
 <% else %>
