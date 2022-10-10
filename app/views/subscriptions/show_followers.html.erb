@@ -1,0 +1,9 @@
+<% if @fol_user_required.count > 0%>
+  <% @fol_user_required.each do |fol| %>
+    <% fol_user = User.find(fol[:follower_id]) %>
+    <%= link_to fol_user[:nickname], "/users/#{fol_user[:id]}" %>
+    <br>
+  <% end %>
+<% else %>
+  <%= "Нет подписчиков" %>
+<% end %>

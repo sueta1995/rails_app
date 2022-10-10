@@ -17,4 +17,12 @@ class SubscriptionsController < ApplicationController
 
     redirect_to "/users/#{params[:id]}", notice: "Вы успешно отписались!"
   end
+
+  def show
+    @sub_user_required = Subscription.where(follower_id: params[:user_id])
+  end
+
+  def show_followers
+    @fol_user_required = Subscription.where(user_id: params[:user_id])
+  end
 end

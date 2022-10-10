@@ -1,0 +1,8 @@
+<% if @sub_user_required.count > 0 %>
+  <% @sub_user_required.each do |sub| %>
+    <% sub_user = User.find(sub[:user_id]) %>
+    <%= link_to sub_user[:nickname], "/users/#{sub_user[:id]}" %>
+  <% end %>
+<% else %>
+  <%= "Подписок" %>
+<% end %>
