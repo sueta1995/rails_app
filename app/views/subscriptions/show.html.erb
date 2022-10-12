@@ -1,8 +1,16 @@
 <% if @sub_user_required.count > 0 %>
-  <% @sub_user_required.each do |sub| %>
-    <% sub_user = User.find(sub[:user_id]) %>
-    <%= link_to sub_user[:nickname], "/users/#{sub_user[:id]}" %>
-  <% end %>
+  <h1 class="display-6">Подписки пользователя:</h1>
+  <ul class="list-group">
+  <br>
+    <% @sub_user_required.each do |sub| %>
+      <% sub_user = User.find(sub[:user_id]) %>
+      <%= link_to "/users/#{sub_user[:id]}" do %>
+        <li class="list-group-item">
+          <%= sub_user[:nickname] %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
 <% else %>
-  <%= "Нет подписок" %>
+  <h1 class="display-6">Нет подписок</h1>
 <% end %>
