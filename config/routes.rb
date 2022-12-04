@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
   root to: "main#index"
-  
-  get 'contacts/index'
-  get 'contacts', to: 'contacts#index'
-
-  get 'yip/index'
-  get 'yip', to: 'yip#index'
 
   get 'main/index'
+  get 'main/ipl'
+  get 'main/contacts'
   get 'main', to: 'main#index'
 
   get '/users/new', to: 'users#new'
