@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_params, only: %i[create]
 
+  # after_action :get_info, only: %i[show]
+
   include UsersHelper
 
   def new
@@ -26,6 +28,8 @@ class UsersController < ApplicationController
 
   def show
     @user_required = User.find_by(id: params[:user_id])
+
+    get_info
   end
 
   def destroy

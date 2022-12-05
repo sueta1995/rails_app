@@ -1,6 +1,6 @@
 <% if @user_required.present? %>
 	<h1 class="display-6">Информация о пользователе 
-		<% if BannedUser.find_by(user_id: @user_required[:id]).present?%>
+		<% if @is_user_banned %>
 			<span class="text-danger fw-bold">(заблокирован)</span>
 		<% end %>
 	</h1>
@@ -15,16 +15,16 @@
 	<p class="fs-5 fw-lighter"><%= "#{@user_required[:email]}" %></p>
 
 	<p class="fs-5 mt-5 fw-bolder">Подписчики:</p>
-	<p class="fs-5 fw-lighter"><%= link_to Subscription.where(user_id: @user_required[:id]).count, "/followers/#{@user_required[:id]}" %></p>
+	<p class="fs-5 fw-lighter"><%= link_to @followers_count, "/followers/#{@user_required[:id]}" %></p>
 
 	<p class="fs-5 mt-5 fw-bolder">Подписки:</p>
-	<p class="fs-5 fw-lighter"><%= link_to Subscription.where(follower_id: @user_required[:id]).count, "/followings/#{@user_required[:id]}" %></p>
-  <% if !current_user.nil? %>
+	<p class="fs-5 fw-lighter"><%= link_to @followings_count, "/followings/#{@user_required[:id]}" %></p>
+  <% if current_user.present? %>
     <% if @user_required == current_user %>
       <p><%= button_to "Удалить аккаунт", "", method: :delete, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
 
     <% else %>
-      <% if Subscription.find_by(user_id: @user_required[:id], follower_id: current_user[:id]).present? %>
+      <% if @is_user_follower %>
         <p><%= button_to "Отписаться", subscription_path, params: { id: @user_required[:id] }, method: :delete, class: "btn btn-dark fs-5 mt-5" %></p>
       <% else %>
         <p><%= button_to "Подписаться", subscriptions_path, params: { id: @user_required[:id] }, method: :post, class: "btn btn-dark fs-5 mt-5" %></p>
