@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   get '/users/new', to: 'users#new'
   get '/users/:user_id', to: 'users#show'
 
-  get '/subscriptions/:user_id', to: 'subscriptions#show'
-  get '/followers/:user_id', to: 'subscriptions#show_followers'
+  get '/followings/:user_id', to: 'subscriptions#followings'
+  get '/followers/:user_id', to: 'subscriptions#followers'
 
   resource :session, only: %i[new create destroy]
   resource :subscription, only: %i[destroy]

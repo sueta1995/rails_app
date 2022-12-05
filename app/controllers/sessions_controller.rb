@@ -1,22 +1,21 @@
 class SessionsController < ApplicationController
+  before_action :set_params, only: %i[create]
+
+  include SessionsHelper
+
   def new
   end
 
   def create
-    user_params = params.require(:session)
-
-    user = User.find_by(email: user_params[:email])&.authenticate(user_params[:password])
-
-    if user.present?
-      ban_status = BannedUser.find_by(user_id: user.id)
+    if @user.present?
+      ban_status = BannedUser.find_by(user_id: @user.id)
 
       if ban_status.present?
         flash.now[:alert] = "Вы не можете зайти в этот аккаунт, так как он заблокирован по причине: #{ban_status.reason}!"
 
         render :new
       else
-        session[:user_id] = user.id 
-        session[:nickname] = user.nickname
+        set_info
       
         redirect_to root_path, notice: 'Вы упешно зашли в аккаунт!'
       end

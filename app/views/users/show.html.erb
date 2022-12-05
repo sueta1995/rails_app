@@ -18,7 +18,7 @@
 	<p class="fs-5 fw-lighter"><%= link_to Subscription.where(user_id: @user_required[:id]).count, "/followers/#{@user_required[:id]}" %></p>
 
 	<p class="fs-5 mt-5 fw-bolder">Подписки:</p>
-	<p class="fs-5 fw-lighter"><%= link_to Subscription.where(follower_id: @user_required[:id]).count, "/subscriptions/#{@user_required[:id]}" %></p>
+	<p class="fs-5 fw-lighter"><%= link_to Subscription.where(follower_id: @user_required[:id]).count, "/followings/#{@user_required[:id]}" %></p>
   <% if !current_user.nil? %>
     <% if @user_required == current_user %>
       <p><%= button_to "Удалить аккаунт", "", method: :delete, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>

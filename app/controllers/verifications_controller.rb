@@ -1,15 +1,16 @@
 class VerificationsController < ApplicationController
+  before_action :set_params, only: %i[create]
+
+  include VerificationsHelper
+
   def new
   end
 
   def create
-    verifications_form_code = params.require(:verification).permit(:code)[:code]
-
-    if verifications_form_code == session[:ver_code]
+    if @verifications_form_code == session[:ver_code]
       User.create(session[:ver_params])
       
-      session.delete(:ver_code)
-      session.delete(:ver_params)
+      delete_info
 
       redirect_to root_path, notice: 'Вы успешно зарегистрировались!'
     else
