@@ -3,6 +3,7 @@
 # class of sessions controller
 class SessionsController < ApplicationController
   before_action :set_params, only: %i[create]
+  before_action :validation, only: %i[create]
 
   include SessionsHelper
 

@@ -11,4 +11,7 @@ module SessionsHelper
     session[:user_id] = @user.id
     session[:nickname] = @user.nickname
   end
+
+  def validation
+  end
 end

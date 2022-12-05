@@ -3,6 +3,7 @@
 # class of users controller
 class UsersController < ApplicationController
   before_action :set_params, only: %i[create]
+  before_action :validation, only: %i[create]
 
   # after_action :get_info, only: %i[show]
 

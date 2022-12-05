@@ -20,4 +20,10 @@ module UsersHelper
     @is_user_follower = Subscription.find_by(user_id: @user_required[:id], follower_id: current_user[:id]).present? if current_user.present?
     @user_questions = Question.where(user_id: @user_required[:id]).reverse
   end
+
+  def validation
+    redirect_to('/users/new', alert: 'Никнейм не может быть пустым') if @user_params[:nickname].empty?
+    redirect_to('/users/new', alert: 'Почта не может быть пустой') if @user_params[:email].empty?
+    redirect_to('/users/new', alert: 'Пароль не может быть пустым') if @user_params[:password].empty?
+  end
 end
