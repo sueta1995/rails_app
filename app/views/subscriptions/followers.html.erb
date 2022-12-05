@@ -1,9 +1,16 @@
 <% if @fol_user_required.count > 0%>
-  <% @fol_user_required.each do |fol| %>
-    <% fol_user = User.find(fol[:follower_id]) %>
-    <%= link_to fol_user[:nickname], "/users/#{fol_user[:id]}" %>
-    <br>
-  <% end %>
+  <h1 class="display-6">Подписчики пользователя:</h1>
+  <ul class="list-group">
+  <br>
+    <% @fol_user_required.each do |fol| %>
+      <% fol_user = User.find(fol[:follower_id]) %>
+      <%= link_to "/users/#{fol_user[:id]}" do %>
+        <li class="list-group-item">
+          <%= fol_user[:nickname] %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
 <% else %>
-  <%= "Нет подписчиков" %>
+  <h1 class="display-6">Нет подписчиков</h1>
 <% end %>
