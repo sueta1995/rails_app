@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def show
     @user_required = User.find_by(id: params[:user_id])
-
+    
     set_info
   end
 

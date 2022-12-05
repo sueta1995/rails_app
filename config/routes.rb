@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create destroy]
   resources :verifications, only: %i[new create]
   resources :subscriptions, only: %i[new create]
+  resources :questions, only: %i[new create destroy]
 end

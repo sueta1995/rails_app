@@ -31,15 +31,53 @@
 	</div>
   
 	<% if current_user.present? %>
-    <% if @user_required == current_user %>
-      <p><%= button_to "Удалить аккаунт", "", method: :delete, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
+		<% if @user_required != current_user %>
+			<% if @is_user_follower %>
+				<p><%= button_to "Отписаться", subscription_path, params: { id: @user_required[:id] }, method: :delete, class: "btn btn-dark fs-5" %></p>
+			<% else %>
+				<p><%= button_to "Подписаться", subscriptions_path, params: { id: @user_required[:id] }, method: :post, class: "btn btn-dark fs-5" %></p>
+			<% end %>
+		<% end %>
 
-    <% else %>
-      <% if @is_user_follower %>
-        <p><%= button_to "Отписаться", subscription_path, params: { id: @user_required[:id] }, method: :delete, class: "btn btn-dark fs-5 mt-5" %></p>
-      <% else %>
-        <p><%= button_to "Подписаться", subscriptions_path, params: { id: @user_required[:id] }, method: :post, class: "btn btn-dark fs-5 mt-5" %></p>
-      <% end %>
+		<br>
+		<hr/>
+
+		<% if @user_questions.empty? %>
+			<p class="fw-bolder fs-4">Записей еще нет...</p>
+		<% end %>
+
+		<% if current_user == @user_required %>
+			<%= form_with scope: :question, url: questions_path, data: {turbo: false} do |form| %>
+				<%= form.label :body, 'Новая запись', class: 'form-label' %><br>
+				<%= form.text_area :body, class: 'form-control form-control' %><br>
+				<%= form.submit 'Опубликовать', class: 'btn btn-outline-light btn-dark' %><br>
+			<% end %>
+		<% end %>
+
+		<% if @user_questions.present? %>
+			<br>
+			<p class="fw-bolder fs-2">Записи от <%= @user_required[:nickname] %></p>
+
+			<% @user_questions.each do |uq| %>
+				<div class="list-group">
+					<a class="list-group-item list-group-item-action">
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1"><%= @user_required[:nickname] %>
+							<small class="text-secondary"><%= uq[:created_at] %>
+						</div>
+						<p class="mb-1">
+							<%= uq[:body] %>
+						</p>
+					</a>
+				</div>
+			<% end %>
+		<% end %>
+
+    <% if @user_required == current_user %>
+			<br>
+			<hr/>
+
+			<p><%= button_to "Удалить аккаунт", "", method: :delete, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
     <% end %>
   <% end %>
 

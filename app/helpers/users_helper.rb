@@ -17,6 +17,7 @@ module UsersHelper
     @is_user_banned = BannedUser.find_by(user_id: @user_required[:id]).present?
     @followers_count = Subscription.where(user_id: @user_required[:id]).count
     @followings_count = Subscription.where(follower_id: @user_required[:id]).count
-    @is_user_follower = Subscription.find_by(user_id: @user_required[:id], follower_id: current_user[:id]).present?
+    @is_user_follower = Subscription.find_by(user_id: @user_required[:id], follower_id: current_user[:id]).present? if current_user.present?
+    @user_questions = Question.where(user_id: @user_required[:id]).reverse
   end
 end
