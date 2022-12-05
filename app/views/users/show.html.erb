@@ -22,20 +22,20 @@
 
 	<div class="text-group-show">
 		<span class="fs-5 mt-5 fw-bolder">Подписчики:</span>
-		<span class="fs-5 fw-lighter"><%= link_to @followers_count, "/followers/#{@user_required[:id]}" %></span>
+		<span class="fs-5 fw-lighter"><%= link_to @followers_count, "/followers/#{@user_required[:id]}", id: 'followers-list-link' %></span>
 	</div>
 
 	<div class="text-group-show">
 		<span class="fs-5 mt-5 fw-bolder">Подписки:</span>
-		<span class="fs-5 fw-lighter"><%= link_to @followings_count, "/followings/#{@user_required[:id]}" %></span>
+		<span class="fs-5 fw-lighter"><%= link_to @followings_count, "/followings/#{@user_required[:id]}", id: 'followings-list-link' %></span>
 	</div>
   
 	<% if current_user.present? %>
 		<% if @user_required != current_user %>
 			<% if @is_user_follower %>
-				<p><%= button_to "Отписаться", subscription_path, params: { id: @user_required[:id] }, method: :delete, class: "btn btn-dark fs-5" %></p>
+				<p><%= button_to "Отписаться", subscription_path, params: { id: @user_required[:id] }, method: :delete, id: 'unfollow-button', class: "btn btn-dark fs-5" %></p>
 			<% else %>
-				<p><%= button_to "Подписаться", subscriptions_path, params: { id: @user_required[:id] }, method: :post, class: "btn btn-dark fs-5" %></p>
+				<p><%= button_to "Подписаться", subscriptions_path, params: { id: @user_required[:id] }, method: :post, id: 'follow-button', class: "btn btn-dark fs-5" %></p>
 			<% end %>
 		<% end %>
 
@@ -80,7 +80,7 @@
 			<br>
 			<hr/>
 
-			<p><%= button_to "Удалить аккаунт", user_path, method: :delete, params: {id: @user_required[:id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
+			<p><%= button_to "Удалить аккаунт", user_path, method: :delete, params: {id: @user_required[:id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, id: 'delete-user-button', class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
     <% end %>
   <% end %>
 
