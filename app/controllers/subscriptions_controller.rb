@@ -1,21 +1,25 @@
+# frozen_string_literal: true
+
+# class of subscriptions controller
 class SubscriptionsController < ApplicationController
-  def new
-  end
+  before_action :set_params, only: %i[create destroy]
+
+  def new; end
 
   def create
-    if Subscription.find_by(user_id: params[:id], follower_id: current_user[:id]).present?
-      redirect_to request.path, alert: "Вы уже подписаны на данного пользователя!"
+    if @subscription_find.present?
+      redirect_to request.path, alert: 'Вы уже подписаны на данного пользователя!'
     else
       Subscription.create(user_id: params[:id], follower_id: current_user[:id])
 
-      redirect_to "/users/#{params[:id]}", notice: "Вы успешно подписались!"
+      redirect_to "/users/#{params[:id]}", notice: 'Вы успешно подписались!'
     end
   end
 
   def destroy
-    Subscription.find_by(user_id: params[:id], follower_id: current_user[:id]).delete
+    @subscription_find.delete
 
-    redirect_to "/users/#{params[:id]}", notice: "Вы успешно отписались!"
+    redirect_to "/users/#{params[:id]}", notice: 'Вы успешно отписались!'
   end
 
   def followings

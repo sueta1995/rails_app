@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# class of users controller
 class UsersController < ApplicationController
   before_action :set_params, only: %i[create]
 
@@ -29,7 +32,7 @@ class UsersController < ApplicationController
   def show
     @user_required = User.find_by(id: params[:user_id])
 
-    get_info
+    set_info
   end
 
   def destroy
