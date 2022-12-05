@@ -1,0 +1,10 @@
+<% if @users.count > 0 %>
+	<h1 class="display-6">Список пользователей</h1>
+
+	<% @users.each do |user| %>
+		<br>
+		<%= link_to user[:nickname], "/users/#{user[:id]}" %>
+	<% end %>
+<% else %>
+	<%= "Пользователи отсутствуют" %>
+<% end %>

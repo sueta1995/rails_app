@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'main/index'
   get 'main/ipl'
   get 'main/contacts'
+  get 'main/users'
   get 'main', to: 'main#index'
 
   get '/users/new', to: 'users#new'
