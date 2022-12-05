@@ -10,9 +10,12 @@ class QuestionsController < ApplicationController
   def create
     Question.create(user_id: current_user.id, body: @question_params[:body])
 
-    redirect_to("/users/#{@current_user.id}", notice: 'Вы успешно опубликовали запись')
+    redirect_to("/users/#{current_user.id}", notice: 'Вы успешно опубликовали запись')
   end
 
   def destroy
+    Question.delete(params[:id])
+
+    redirect_to("/users/#{current_user.id}", notice: 'Вы успешно удалили запись')
   end
 end

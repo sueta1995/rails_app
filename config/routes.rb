@@ -15,8 +15,9 @@ Rails.application.routes.draw do
 
   resource :session, only: %i[new create destroy]
   resource :subscription, only: %i[destroy]
+  resource :question, only: %i[destroy]
   resources :users, only: %i[new create destroy]
   resources :verifications, only: %i[new create]
   resources :subscriptions, only: %i[new create]
-  resources :questions, only: %i[new create destroy]
+  resources :questions, only: %i[new create]
 end

@@ -68,6 +68,7 @@
 						<p class="mb-1">
 							<%= uq[:body] %>
 						</p>
+						<small class="text-danger"><%= button_to "Удалить", question_path, method: :delete, params: {id: uq[:id]}, class: "btn btn-link btn-sm nav-link" %></small>
 					</a>
 				</div>
 			<% end %>
