@@ -1,10 +1,16 @@
 <% if @users.count > 0 %>
 	<h1 class="display-6">Список пользователей</h1>
 
-	<% @users.each do |user| %>
-		<br>
-		<%= link_to user[:nickname], "/users/#{user[:id]}" %>
-	<% end %>
+	<ul class="list-group">
+	<br>
+		<% @users.each do |user| %>
+			<%= link_to "/users/#{user[:id]}" do %>
+				<li class="list-group-item">
+					<%= user[:nickname] %>
+				</li>
+			<% end%>
+		<% end %>
+	</ul>
 <% else %>
-	<%= "Пользователи отсутствуют" %>
+	<h1 class="display-6">Пользователи отсутствуют</h1>
 <% end %>

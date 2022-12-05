@@ -4,6 +4,8 @@
 class SubscriptionsController < ApplicationController
   before_action :set_params, only: %i[create destroy]
 
+  include SubscriptionsHelper
+
   def new; end
 
   def create
