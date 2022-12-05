@@ -4,6 +4,7 @@
 class UsersController < ApplicationController
   before_action :set_params, only: %i[create]
   before_action :validation, only: %i[create]
+  before_action :set_destroy_params, only: %i[destroy]
 
   # after_action :get_info, only: %i[show]
 
@@ -38,7 +39,8 @@ class UsersController < ApplicationController
 
   def destroy
     session.delete(:user_id)
-    User.find(params[:id]).delete
+
+    clear_user
 
     redirect_to root_path, notice: 'Аккаунт удален!'
   end

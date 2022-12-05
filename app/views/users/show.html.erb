@@ -80,7 +80,7 @@
 			<br>
 			<hr/>
 
-			<p><%= button_to "Удалить аккаунт", "", method: :delete, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
+			<p><%= button_to "Удалить аккаунт", user_path, method: :delete, params: {id: @user_required[:id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
     <% end %>
   <% end %>
 

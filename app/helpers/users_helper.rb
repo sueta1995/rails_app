@@ -26,4 +26,16 @@ module UsersHelper
     redirect_to('/users/new', alert: 'Почта не может быть пустой') if @user_params[:email].empty?
     redirect_to('/users/new', alert: 'Пароль не может быть пустым') if @user_params[:password].empty?
   end
+
+  def set_destroy_params
+    @destroy_params = params[:id]
+  end
+
+  def clear_user
+    User.delete(@destroy_params)
+    BannedUser.delete_by(user_id: @destroy_params)
+    Question.delete_by(user_id: @destroy_params)
+    Subscription.delete_by(user_id: @destroy_params)
+    Subscription.delete_by(follower_id: @destroy_params)
+  end
 end
