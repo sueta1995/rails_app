@@ -56,23 +56,27 @@
 
 		<% if @user_questions.present? %>
 			<br>
-			<p class="fw-bolder fs-2">Записи от <%= @user_required[:nickname] %></p>
+			<% if !@is_user_banned. %>
+				<p class="fw-bolder fs-2">Записи от <%= @user_required[:nickname] %></p>
 
-			<% @user_questions.each do |uq| %>
-				<div class="list-group">
-					<a class="list-group-item list-group-item-action">
-						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1"><%= @user_required[:nickname] %></h5>
-							<small class="text-secondary"><%= uq[:created_at] %></small>
-						</div>
-						<p class="mb-1">
-							<%= uq[:body] %>
-						</p>
-						<% if current_user == @user_required %>
-							<small class="text-danger"><%= button_to "Удалить", question_path, method: :delete, params: {id: uq[:id]}, class: "btn btn-link btn-sm nav-link" %></small>
-						<% end %>
-					</a>
-				</div>
+				<% @user_questions.each do |uq| %>
+					<div class="list-group">
+						<a class="list-group-item list-group-item-action">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class="mb-1"><%= @user_required[:nickname] %></h5>
+								<small class="text-secondary"><%= uq[:created_at] %></small>
+							</div>
+							<p class="mb-1">
+								<%= uq[:body] %>
+							</p>
+							<% if current_user == @user_required %>
+								<small class="text-danger"><%= button_to "Удалить", question_path, method: :delete, params: {id: uq[:id]}, class: "btn btn-link btn-sm nav-link" %></small>
+							<% end %>
+						</a>
+					</div>
+				<% end %>
+			<% else %>
+				<p class="fw-bolder fs-2">Записи скрыты</p>
 			<% end %>
 		<% end %>
 

@@ -6,7 +6,9 @@ module MainHelper
 		@questions_list = []
 
 		@following_list.each do |fl|
-			@questions_list += Question.where(user_id: fl[:user_id])
+			if BannedUser.find_by(user_id: fl[:user_id]).nil?
+				@questions_list += Question.where(user_id: fl[:user_id])
+			end
 		end
 
 		@questions_list = @questions_list.sort_by(&:created_at).reverse
