@@ -86,6 +86,11 @@
 
 			<p><%= button_to "Удалить аккаунт", user_path, method: :delete, params: {id: @user_required[:id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, id: 'delete-user-button', class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
     <% end %>
+	<% else %>
+		<br>
+		<hr/>
+		<p class="fw-bolder fs-4">Чтобы просматривать чужие записи, необходимо авторизоваться</p>
+
   <% end %>
 
 <% else %>
