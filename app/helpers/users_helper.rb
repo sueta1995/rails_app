@@ -35,6 +35,7 @@ module UsersHelper
 
   def clear_user
     User.delete(@destroy_params)
+
     BannedUser.delete_by(user_id: @destroy_params)
     Question.delete_by(user_id: @destroy_params)
     Subscription.delete_by(user_id: @destroy_params)
