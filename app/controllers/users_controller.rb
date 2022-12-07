@@ -23,6 +23,12 @@ class UsersController < ApplicationController
       flash.now[:alert] = 'Пользователь с такой почтой уже существует!'
 
       render :new
+
+    elsif @user_params[:password] != @user_params[:password_confirmation]
+      flash.now[:alert] = 'Пароли не совпадают!'
+
+      render :new
+
     else
       create_ver
 

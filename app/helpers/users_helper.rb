@@ -3,7 +3,7 @@
 # helper for users controller
 module UsersHelper
   def set_params
-    @user_params = params.require(:user).permit(:nickname, :email, :password)
+    @user_params = params.require(:user).permit(:nickname, :email, :password, :password_confirmation)
     @user_check_nickname = User.find_by(nickname: @user_params[:nickname])
     @user_check_email = User.find_by(email: @user_params[:email])
   end

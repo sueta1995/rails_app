@@ -1,15 +1,16 @@
 <% if current_user.nil? %>
-  <%= form_with model: @user, data: {turbo: false} do  |form| %>
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card bg-dark text-white">
-            <div class="card-body p-5">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white">
+          <div class="card-body p-5">
 
-              <div class="mb-md-5 mt-md-4 pb-5">
+            <div class="mb-md-5 mt-md-4 pb-5">
 
-                <h2 class="fw-bold mb-2 text-uppercase">Регистрация</h2>
-                <p class="text-white-50 mb-5">Введите следующие данные</p>
+              <h2 class="fw-bold mb-2 text-uppercase">Регистрация</h2>
+              <p class="text-white-50 mb-5">Введите следующие данные</p>
+
+              <%= form_with scope: :user, url: users_path, data: {turbo: false} do  |form| %>
 
                 <div class="form-outline form-white mb-4">
                   <%= form.label :nickname, 'Ваш никнейм', class: "form-label" %>
@@ -26,15 +27,21 @@
                   <%= form.password_field :password, class: 'form-control form-control-lg', :required => true, autocomplete: "new-password" %>
                 </div>
 
-                <%= form.submit 'Зарегистрироваться', class: 'btn btn-outline-light btn-lg'%>
-              </div>
+                <div class="form-outline form-white mb-4">
+                  <%= form.label :password_confirmation, 'Повторите пароль', class: "form-label" %>
+                  <%= form.password_field :password_confirmation, class: 'form-control form-control-lg', :required => true, autocomplete: "new-password" %>
+                </div>
 
+                <%= form.submit 'Зарегистрироваться', class: 'btn btn-outline-light btn-lg'%>
+
+              <% end %>
             </div>
+
           </div>
         </div>
       </div>
     </div>
-  <% end %>
+  </div>
 <% else %>
   <% controller.redirect_to root_path, notice: "Вы уже вошли в аккаунт!" %>
 <% end %>
