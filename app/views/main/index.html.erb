@@ -11,7 +11,7 @@
 						<h5 class="mb-1"><%= User.find(ql[:user_id])[:nickname] %></h5>
 						<small class="text-secondary"><%= ql[:created_at] %></small>
 					</div>
-					<p class="mb-1">
+					<p class="mb-1 text-break">
 						<%= ql[:body] %>
 					</p>
 				</a>
