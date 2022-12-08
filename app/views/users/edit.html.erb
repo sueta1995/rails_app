@@ -1,0 +1,38 @@
+<h1 class="display-6">Изменение данных</h1>
+
+<br>
+
+<p class="fw-bolder fs-4">Изменить никнейм</p>
+
+<div class="row">
+	<div class="col-6">
+		<%= form_with scope: :user_nickname, url: nickname_path, method: :patch do |form| %>
+			<%= form.label :nickname, 'Новый никнейм', class: 'form-label' %>
+			<%= form.text_field :nickname, class: 'form-control', :required => true, pattern: "^[a-zA-Z][a-zA-Z0-9-_]+$" %>
+			<br>
+			<%= form.submit 'Сменить ник', class: 'btn btn-dark fs-5' %>
+		<% end %>
+	</div>
+</div>
+
+<br>
+<br>
+
+<p class="fw-bolder fs-4">Изменить пароль</p>
+
+<div class="row">
+	<div class="col-6">
+		<%= form_with scope: :user_password, url: password_path, method: :patch do |form| %>
+			<%= form.label :old_password, 'Старый пароль', class: "form-label" %>
+			<%= form.password_field :old_password, class: 'form-control', :required => true, autocomplete: "new-password" %>
+			<br>
+			<%= form.label :new_password, class: 'form-label' %>
+			<%= form.password_field :new_password, class: 'form-control', :required => true, autocomplete: "new-password" %>
+			<br>
+			<%= form.label :new_password_confirmation, class: 'form-label' %>
+			<%= form.password_field :new_password_confirmation, class: 'form-control', :required => true, autocomplete: "new-password" %>
+			<br>
+			<%= form.submit 'Сменить пароль', class: 'btn btn-dark fs-5' %>
+		<% end %>
+	</div>
+</div>

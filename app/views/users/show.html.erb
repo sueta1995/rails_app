@@ -37,6 +37,9 @@
 			<% else %>
 				<p><%= button_to "Подписаться", subscriptions_path, params: { id: @user_required[:id] }, method: :post, id: 'follow-button', class: "btn btn-dark fs-5" %></p>
 			<% end %>
+
+		<% else %>
+			<p><%= button_to "Изменить данные", '/users/edit', method: :get, class: "btn btn-dark fs-5" %></p>
 		<% end %>
 
 		<br>

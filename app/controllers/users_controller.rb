@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_action :set_params, only: %i[create]
   before_action :validation, only: %i[create]
   before_action :set_destroy_params, only: %i[destroy]
+  before_action :check_edit, only: %i[edit]
 
   # after_action :get_info, only: %i[show]
 
@@ -51,5 +52,7 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'Аккаунт удален!'
   end
 
-  
+  # action for edit view
+  def edit
+  end
 end

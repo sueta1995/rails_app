@@ -41,4 +41,8 @@ module UsersHelper
     Subscription.delete_by(user_id: @destroy_params)
     Subscription.delete_by(follower_id: @destroy_params)
   end
+
+  def check_edit
+    redirect_to(root_path, alert: 'Вы не можете перейти на данную страницу!') if current_user.nil?
+  end
 end
