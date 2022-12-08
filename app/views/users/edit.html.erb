@@ -28,13 +28,14 @@
 			<%= form.label :old_password, 'Старый пароль', class: "form-label" %>
 			<%= form.password_field :old_password, class: 'form-control', :required => true, autocomplete: "new-password" %>
 			<br>
-			<%= form.label :new_password, class: 'form-label' %>
+			<%= form.label :new_password, 'Новый пароль', class: 'form-label' %>
 			<%= form.password_field :new_password, class: 'form-control', :required => true, autocomplete: "new-password" %>
 			<br>
-			<%= form.label :new_password_confirmation, class: 'form-label' %>
+			<%= form.label :new_password_confirmation, 'Подтверждение нового пароля', class: 'form-label' %>
 			<%= form.password_field :new_password_confirmation, class: 'form-control', :required => true, autocomplete: "new-password" %>
 			<br>
 			<%= form.submit 'Сменить пароль', class: 'btn btn-dark fs-5' %>
 		<% end %>
 	</div>
 </div>
+<br>
