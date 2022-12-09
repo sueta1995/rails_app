@@ -16,6 +16,6 @@ class CommentsController < ApplicationController
   def destroy
     Comment.delete(params[:id])
 
-    redirect_to("/questions/#{@comment_params[:question_id]}", notice: 'Вы успешно удалили запись')
+    redirect_to("/questions/#{params[:question_id]}", notice: 'Вы успешно удалили комментарий')
   end
 end

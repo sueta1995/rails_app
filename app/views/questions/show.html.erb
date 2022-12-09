@@ -35,9 +35,9 @@
 							<h5 class="mb-1"><%= button_to User.find(qc[:user_id])[:nickname], "/users/#{User.find(qc[:user_id])[:id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></h5>
 							<small class="text-muted"><%= qc[:created_at] %></small>
 						</div>
-						<p class="mb-1"><%= qc[:body] %></p>
+						<p class="mb-1 text-break"><%= qc[:body] %></p>
 						<% if current_user[:id] == qc[:user_id] %>
-							<small class="text-danger"><%= button_to "Удалить", comment_path, method: :delete, params: {id: qc[:id]}, class: "btn btn-link btn-sm nav-link" %></small>
+							<small class="text-danger"><%= button_to "Удалить", comment_path, method: :delete, params: {id: qc[:id], question_id: qc[:question_id]}, class: "btn btn-link btn-sm nav-link" %></small>
 						<% end %>
 					</div>
 				<% end %>

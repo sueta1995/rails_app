@@ -22,6 +22,8 @@
                   <%= form.text_field :email, class: 'form-control form-control-lg', :required => true %>
                 </div>
 
+                <p class="text-white-50 mb-5">Пароль должен содержать как минимум 6 символов, включая одну цифру, одну заглавную латинскую букву, одну строчную латинскую букв и спецсимвол: !, @, #, $, %, ^, &, *.</p>
+
                 <div class="form-outline form-white mb-4">
                   <%= form.label :password, 'Ваш пароль', class: "form-label" %>
                   <%= form.password_field :password, class: 'form-control form-control-lg', :required => true, autocomplete: "new-password" %>

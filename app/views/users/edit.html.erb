@@ -24,6 +24,7 @@
 <div class="row d-flex justify-content-center align-items-center">
 	<div class="col-12">
 		<p class="fw-bolder fs-4">Изменить пароль</p>
+		<p class="text-muted mb-4">Пароль должен содержать как минимум 6 символов, включая одну цифру, одну заглавную латинскую букву, одну строчную латинскую букв и спецсимвол: !, @, #, $, %, ^, &, *.</p>
 		<%= form_with scope: :user_password, url: password_path, method: :patch do |form| %>
 			<%= form.label :old_password, 'Старый пароль', class: "form-label" %>
 			<%= form.password_field :old_password, class: 'form-control', :required => true, autocomplete: "new-password" %>
