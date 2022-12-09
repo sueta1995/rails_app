@@ -6,15 +6,16 @@
 	<% if @following_list.count > 0 %>
 		<% @questions_list.each do |ql| %>
 			<div class="list-group">
-				<a class="list-group-item list-group-item-action">
+				<div class="list-group-item list-group-item-action">
 					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1"><%= User.find(ql[:user_id])[:nickname] %></h5>
+						<h5 class="mb-1"><%= button_to User.find(ql[:user_id])[:nickname], "/users/#{User.find(ql[:user_id])[:id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></h5>
 						<small class="text-secondary"><%= ql[:created_at] %></small>
 					</div>
 					<p class="mb-1 text-break">
 						<%= ql[:body] %>
 					</p>
-				</a>
+					<small class="text-secondary"><%= button_to "Комментарии (#{comments_count(ql[:id])})", "/questions/#{ql[:id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></small>
+				</div>
 			</div>
 		<% end %>
 	<% else %>

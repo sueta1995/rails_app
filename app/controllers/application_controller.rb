@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   before_action :check_ban
 
+  include ApplicationHelper
+
   private
 
   def current_user

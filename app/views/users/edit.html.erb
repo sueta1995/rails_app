@@ -11,7 +11,7 @@
 		<p class="fw-bolder fs-4">Изменить никнейм</p>
 		<%= form_with scope: :user_nickname, url: nickname_path, method: :patch do |form| %>
 			<%= form.label :nickname, 'Новый никнейм', class: 'form-label' %>
-			<%= form.text_field :nickname, class: 'form-control', :required => true, pattern: "^[a-zA-Z][a-zA-Z0-9-_]+$" %>
+			<%= form.text_field :nickname, class: 'form-control', :required => true %>
 			<br>
 			<%= form.submit 'Сменить ник', class: 'btn btn-dark fs-5' %>
 		<% end %>

@@ -64,18 +64,19 @@
 
 				<% @user_questions.each do |uq| %>
 					<div class="list-group">
-						<a class="list-group-item list-group-item-action">
+						<div class="list-group-item list-group-item-action">
 							<div class="d-flex w-100 justify-content-between">
-								<h5 class="mb-1"><%= @user_required[:nickname] %></h5>
+								<h5 class="mb-1"><%= button_to @user_required[:nickname], "/users/#{uq[:user_id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></h5>
 								<small class="text-secondary"><%= uq[:created_at] %></small>
 							</div>
 							<p class="mb-1 text-break">
 								<%= uq[:body] %>
 							</p>
+							<small class="text-secondary"><%= button_to "Комментарии (#{comments_count(uq[:id])})", "/questions/#{uq[:id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></small>
 							<% if current_user == @user_required %>
 								<small class="text-danger"><%= button_to "Удалить", question_path, method: :delete, params: {id: uq[:id]}, class: "btn btn-link btn-sm nav-link" %></small>
 							<% end %>
-						</a>
+						</div>
 					</div>
 				<% end %>
 			<% else %>

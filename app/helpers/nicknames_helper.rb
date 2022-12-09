@@ -4,7 +4,7 @@ module NicknamesHelper
 	end
 
 	def validation
-		redirect_to('/users/edit', alert: 'Никнейм не может быть пустым') if @nickname_params[:nickname].empty?
+		redirect_to('/users/edit', alert: 'Введите валидный никнейм') if !/^[a-zA-Z][a-zA-Z0-9-_]+$/.match?(@nickname_params[:nickname])
 	end
 
 	def exist_nickname

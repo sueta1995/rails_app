@@ -14,12 +14,12 @@
 
                 <div class="form-outline form-white mb-4">
                   <%= form.label :nickname, 'Ваш никнейм', class: "form-label" %>
-                  <%= form.text_field :nickname, class: 'form-control form-control-lg', :required => true, pattern: "^[a-zA-Z][a-zA-Z0-9-_]+$" %>
+                  <%= form.text_field :nickname, class: 'form-control form-control-lg', :required => true %>
                 </div>
 
                 <div class="form-outline form-white mb-4">
                   <%= form.label :email, 'Ваш email-адрес', class: "form-label" %>
-                  <%= form.text_field :email, class: 'form-control form-control-lg', :required => true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" %>
+                  <%= form.text_field :email, class: 'form-control form-control-lg', :required => true %>
                 </div>
 
                 <div class="form-outline form-white mb-4">

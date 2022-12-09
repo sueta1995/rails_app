@@ -20,6 +20,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question_required = Question.find_by(id: params[:question_id])
+    @question_required = Question.find(params[:question_id])
+    @question_user = User.find(@question_required[:user_id])
+
+    set_info
   end
 end

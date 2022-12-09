@@ -4,9 +4,9 @@ module PasswordsHelper
 	end
 
 	def validation
-		redirect_to('/users/edit', alert: 'Старый пароль не может быть старым') if @password_params[:old_password].empty?
-		redirect_to('/users/edit', alert: 'Новый пароль не может быть пустым') if @password_params[:new_password].empty?
-		redirect_to('/users/edit', alert: 'Поле подтверждения пароля не может быть пустым') if @password_params[:new_password_confirmation].empty?
+		redirect_to('/users/edit', alert: 'Старый пароль не может быть пустым') and return if @password_params[:old_password].empty?
+		redirect_to('/users/edit', alert: 'Введите валидный новый пароль') and return if !/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/.match?(@password_params[:new_password])
+		redirect_to('/users/edit', alert: 'Поле подтверждения пароля не может быть пустым') and return if @password_params[:new_password_confirmation].empty?
 	end
 
 	def right_old_password

@@ -24,9 +24,9 @@ module UsersHelper
   end
 
   def validation
-    redirect_to('/users/new', alert: 'Никнейм не может быть пустым') if @user_params[:nickname].empty?
-    redirect_to('/users/new', alert: 'Почта не может быть пустой') if @user_params[:email].empty?
-    redirect_to('/users/new', alert: 'Пароль не может быть пустым') if @user_params[:password].empty?
+    redirect_to('/users/new', alert: 'Введите валидный никнейм') and return if !/^[a-zA-Z][a-zA-Z0-9-_]+$/.match?(@user_params[:nickname])
+    redirect_to('/users/new', alert: 'Введите валидную почту') and return if !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.match?(@user_params[:email])
+    redirect_to('/users/new', alert: 'Введите валидный пароль') and return if !/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/.match?(@user_params[:password])
   end
 
   def set_destroy_params
@@ -40,6 +40,7 @@ module UsersHelper
     Question.delete_by(user_id: @destroy_params)
     Subscription.delete_by(user_id: @destroy_params)
     Subscription.delete_by(follower_id: @destroy_params)
+    Comment.delete_by(user_id: @destroy_params)
   end
 
   def check_edit
