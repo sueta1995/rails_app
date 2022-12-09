@@ -1,0 +1,17 @@
+<% if @question_required.present? %>
+	<h1 class="display-6">Информация о записи</h1>
+
+	<br>
+
+	<div class="list-group">
+		<a class="list-group-item list-group-item-action">
+			<div class="d-flex w-100 justify-content-between">
+				<h5 class="mb-1"><%= User.find(@question_required[:user_id])[:nickname] %></h5>
+				<small class="text-secondary"><%= @question_required[:created_at] %></small>
+			</div>
+			<p class="mb-1 text-break">
+				<%= @question_required[:body] %>
+			</p>
+		</a>
+	</div>
+<% end %>

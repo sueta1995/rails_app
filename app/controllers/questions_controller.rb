@@ -18,4 +18,8 @@ class QuestionsController < ApplicationController
 
     redirect_to("/users/#{current_user.id}", notice: 'Вы успешно удалили запись')
   end
+
+  def show
+    @question_required = Question.find_by(id: params[:question_id])
+  end
 end
