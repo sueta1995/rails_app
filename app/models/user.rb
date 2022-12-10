@@ -1,6 +1,14 @@
 class User < ApplicationRecord
 	has_secure_password
 
+	has_many :comments, dependent: :destroy
+	has_many :questions, dependent: :destroy
+	
+	has_many :followers, class_name: "Subscription", foreign_key: "user_id", dependent: :destroy
+	has_many :followings, class_name: "Subscription", foreign_key: "follower_id", dependent: :destroy
+
+	has_one :banned_user, dependent: :destroy
+
 	validates :nickname, :email, :password, :password_confirmation, presence: { message: 'cannot be empty' }
 
 	validates :nickname, :email, uniqueness: true
