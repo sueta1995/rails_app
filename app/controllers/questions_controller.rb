@@ -17,14 +17,13 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    Question.delete(params[:id])
+    Question.destroy(params[:id])
 
     redirect_to("/users/#{current_user.id}", notice: 'Вы успешно удалили запись')
   end
 
   def show
-    @question_required = Question.find(params[:question_id])
-    @question_user = User.find(@question_required[:user_id])
+    @question_required = Question.find_by(id: params[:question_id])
 
     set_info
   end

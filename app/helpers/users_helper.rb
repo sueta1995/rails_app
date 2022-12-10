@@ -13,11 +13,11 @@ module UsersHelper
 
   def set_info
     if @user_required.present?
-      @is_user_banned = BannedUser.find_by(user_id: @user_required[:id]).present?
-      @followers_count = Subscription.where(user_id: @user_required[:id]).count
-      @followings_count = Subscription.where(follower_id: @user_required[:id]).count
+      @is_user_banned = @user_required.banned_user.present?
+      @followers_count = @user_required.followers.count
+      @followings_count = @user_required.followings.count
       @is_user_follower = Subscription.find_by(user_id: @user_required[:id], follower_id: current_user[:id]).present? if current_user.present?
-      @user_questions = Question.where(user_id: @user_required[:id]).reverse
+      @user_questions = @user_required.questions.reverse
     end
   end
 
@@ -26,13 +26,7 @@ module UsersHelper
   end
 
   def clear_user
-    User.delete(@destroy_params)
-
-    BannedUser.delete_by(user_id: @destroy_params)
-    Question.delete_by(user_id: @destroy_params)
-    Subscription.delete_by(user_id: @destroy_params)
-    Subscription.delete_by(follower_id: @destroy_params)
-    Comment.delete_by(user_id: @destroy_params)
+    User.destroy(@destroy_params)
   end
 
   def check_edit

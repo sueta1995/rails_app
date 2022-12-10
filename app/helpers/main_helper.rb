@@ -6,8 +6,10 @@ module MainHelper
 		@questions_list = []
 
 		@following_list.each do |fl|
-			if BannedUser.find_by(user_id: fl[:user_id]).nil?
-				@questions_list += Question.where(user_id: fl[:user_id])
+			user = User.find(fl[:user_id])
+
+			if user.banned_user.nil?
+				@questions_list += user.questions
 			end
 		end
 
