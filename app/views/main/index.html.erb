@@ -8,7 +8,7 @@
 			<div class="list-group">
 				<div class="list-group-item list-group-item-action">
 					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1"><%= button_to User.find(ql[:user_id])[:nickname], "/users/#{User.find(ql[:user_id])[:id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></h5>
+						<h5 class="mb-1"><%= button_to ql.user.nickname, "/users/#{ql.user.id}", method: :get, class: "btn btn-link btn-sm nav-link" %></h5>
 						<small class="text-secondary"><%= ql[:created_at] %></small>
 					</div>
 					<p class="mb-1 text-break">

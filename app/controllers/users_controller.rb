@@ -3,38 +3,28 @@
 # class of users controller
 class UsersController < ApplicationController
   before_action :set_params, only: %i[create]
-  before_action :validation, only: %i[create]
   before_action :set_destroy_params, only: %i[destroy]
   before_action :check_edit, only: %i[edit]
 
-  # after_action :get_info, only: %i[show]
+  # after_action :set_info, only: %i[show]
 
   include UsersHelper
 
   def new
-    @user = User.new
   end
 
   def create
-    if @user_check_nickname.present?
-      flash.now[:alert] = 'Пользователь с таким никнеймом уже существует!'
-
-      render :new
-    elsif @user_check_email.present?
-      flash.now[:alert] = 'Пользователь с такой почтой уже существует!'
-
-      render :new
-
-    elsif @user_params[:password] != @user_params[:password_confirmation]
-      flash.now[:alert] = 'Пароли не совпадают!'
-
-      render :new
-
-    else
+    @user = User.new(@user_params)
+    
+    if @user.validate
       create_ver
 
       UserMailer.with(user: session[:ver_params], code: session[:ver_code]).send_code.deliver_now
       redirect_to '/verifications/new'
+    else
+      flash.now[:alert] = @user.errors.full_messages[0]
+
+      render :new
     end
   end
 

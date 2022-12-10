@@ -16,10 +16,10 @@ class ApplicationController < ActionController::Base
 
   def check_ban
     return unless current_user.present?
-    return unless BannedUser.find_by(user_id: current_user.id).present?
+    return unless current_user.banned_user.present?
 
     session.delete(:user_id)
 
-    redirect_to('/main', alert: 'Вас заблокировали!')
+    redirect_to(root_path, alert: 'Вас заблокировали!')
   end
 end

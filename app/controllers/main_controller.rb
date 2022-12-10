@@ -6,7 +6,7 @@ class MainController < ApplicationController
 
   def index
     if current_user.present?
-      @following_list = Subscription.where(follower_id: current_user.id)
+      @following_list = current_user.followings
 
       create_questions_list
     end

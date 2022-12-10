@@ -1,3 +1,6 @@
 class Comment < ApplicationRecord
-	validates :user_id, :body, presence: { message: 'cannot be empty' }
+	belongs_to :user
+	belongs_to :question
+
+	validates :user_id, :question_id, :body, presence: { message: 'cannot be empty' }
 end

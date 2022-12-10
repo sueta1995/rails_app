@@ -5,9 +5,6 @@ module NicknamesHelper
 
 	def validation
 		redirect_to('/users/edit', alert: 'Введите валидный никнейм') if !/^[a-zA-Z][a-zA-Z0-9-_]+$/.match?(@nickname_params[:nickname])
-	end
-
-	def exist_nickname
 		redirect_to('/users/edit', alert: 'Данный никнейм занят') if User.find_by(nickname: @nickname_params[:nickname]).present?
 	end
 end
