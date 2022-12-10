@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :set_params, only: %i[create]
-  before_action :validation, only: %i[create]
 
   include CommentsHelper
 
@@ -8,9 +7,13 @@ class CommentsController < ApplicationController
   end
   
   def create
-    Comment.create(user_id: current_user.id, question_id: @comment_params[:question_id], body: @comment_params[:body])
+    @comment = Comment.new(user_id: current_user[:id], question_id: @comment_params[:question_id], body: @comment_params[:body])
 
-    redirect_to("/questions/#{@comment_params[:question_id]}", notice: 'Вы успешно опубликовали комментарий')
+    if @comment.save
+      redirect_to(request.referrer, notice: 'Вы успешно опубликовали комментарий')
+    else
+      redirect_to(request.referrer, alert: @comment.errors.full_messages[0])
+    end
   end
 
   def destroy

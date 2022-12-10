@@ -1,6 +1,5 @@
 class QuestionsController < ApplicationController
   before_action :set_params, only: %i[create]
-  before_action :validation, only: %i[create]
 
   include QuestionsHelper
 
@@ -8,9 +7,13 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    Question.create(user_id: current_user.id, body: @question_params[:body])
+    @question = Question.new(body: @question_params[:body], user_id: current_user[:id])
 
-    redirect_to("/users/#{current_user.id}", notice: 'Вы успешно опубликовали запись')
+    if @question.save
+      redirect_to(request.referrer, notice: 'Вы успешно опубликовали запись')
+    else
+      redirect_to(request.referrer, alert: @question.errors.full_messages[0])
+    end
   end
 
   def destroy
