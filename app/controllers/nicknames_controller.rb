@@ -1,13 +1,15 @@
 class NicknamesController < ApplicationController
   before_action :set_update_params
-  before_action :validation
-  before_action :exist_nickname
 
   include NicknamesHelper
 
   def update
-    User.find(current_user[:id]).update(nickname: @nickname_params[:nickname])
+    @user = User.find(current_user[:id])
 
-    redirect_to('/users/edit', notice: 'Никнейм успешно изменен')
+    if @user.update(nickname: @nickname_params[:nickname])
+      redirect_to(request.referrer, notice: 'Никнейм успешно изменен')
+    else
+      redirect_to(request.referrer, alert: @user.errors.full_messages[0])
+    end
   end
 end
