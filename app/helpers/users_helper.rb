@@ -21,13 +21,6 @@ module UsersHelper
     end
   end
 
-  # old version
-  # def validation
-  #   redirect_to('/users/new', alert: 'Введите валидный никнейм') and return if !/^[a-zA-Z][a-zA-Z0-9-_]+$/.match?(@user_params[:nickname])
-  #   redirect_to('/users/new', alert: 'Введите валидную почту') and return if !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.match?(@user_params[:email])
-  #   redirect_to('/users/new', alert: 'Введите валидный пароль') and return if !/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/.match?(@user_params[:password])
-  # end
-
   def set_destroy_params
     @destroy_params = params[:id]
   end

@@ -1,8 +1,9 @@
 class User < ApplicationRecord
 	has_secure_password
 
-	validates :nickname, :email, uniqueness: true
 	validates :nickname, :email, :password, :password_confirmation, presence: { message: 'cannot be empty' }
+
+	validates :nickname, :email, uniqueness: true
 	
 	validates :nickname, format: { 
 		with: /\A[a-zA-Z][-a-zA-Z0-9_]+\z/,
