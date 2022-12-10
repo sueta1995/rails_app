@@ -20,6 +20,6 @@ class ApplicationController < ActionController::Base
 
     session.delete(:user_id)
 
-    redirect_to('/main', alert: 'Вас заблокировали!')
+    redirect_to(root_path, alert: 'Вас заблокировали!')
   end
 end
