@@ -10,6 +10,7 @@ module SessionsHelper
   def set_info
     session[:user_id] = @user.id
     session[:nickname] = @user.nickname
+    session[:admin] = @user.admin_user.present?
   end
 
   def validation

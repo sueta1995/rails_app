@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'bans/new'
+  get 'bans/create'
+  get 'bans/destroy'
+  get 'bans/new'
+  get 'bans/creata'
+  get 'bans/destroy'
   root to: "main#index"
 
   get 'main/index'

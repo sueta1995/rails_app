@@ -73,8 +73,8 @@
 								<%= uq[:body] %>
 							</p>
 							<small class="text-secondary"><%= button_to "Комментарии (#{comments_count(uq[:id])})", "/questions/#{uq[:id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></small>
-							<% if current_user == @user_required %>
-								<small class="text-danger"><%= button_to "Удалить", question_path, method: :delete, params: {id: uq[:id]}, class: "btn btn-link btn-sm nav-link" %></small>
+							<% if current_user == @user_required || session[:admin] %>
+								<small class="text-danger"><%= button_to "Удалить", question_path, method: :delete, params: {id: uq[:id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-link btn-sm nav-link" %></small>
 							<% end %>
 						</div>
 					</div>
@@ -85,17 +85,16 @@
 		<% end %>
 
     <% if @user_required == current_user %>
-			<br>
-			<hr/>
+		<br>
+		<hr/>
 
-			<p><%= button_to "Удалить аккаунт", user_path, method: :delete, params: {id: @user_required[:id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, id: 'delete-user-button', class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
+		<p><%= button_to "Удалить аккаунт", user_path, method: :delete, params: {id: @user_required[:id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, id: 'delete-user-button', class: "btn btn-danger fs-5 mt-5 fw-bolder" %></p>
     <% end %>
 	<% else %>
 		<br>
 		<hr/>
 		<p class="fw-bolder fs-4">Чтобы просматривать чужие записи, необходимо авторизоваться</p>
-
-  <% end %>
+  	<% end %>
 
 <% else %>
 	<h1 class="display-6">Данный пользователь не существует!</h1>
