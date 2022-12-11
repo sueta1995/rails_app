@@ -8,6 +8,7 @@ class User < ApplicationRecord
 	has_many :followings, class_name: "Subscription", foreign_key: "follower_id", dependent: :destroy
 
 	has_one :banned_user, dependent: :destroy
+	has_one :admin_user, dependent: :destroy
 
 	validates :nickname, :email, :password, :password_confirmation, presence: { message: 'cannot be empty' }
 

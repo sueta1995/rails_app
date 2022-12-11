@@ -13,6 +13,9 @@
 				<p class="mb-1 text-break">
 					<%= @question_required[:body] %>
 				</p>
+				<% if current_user[:id] == @question_required[:user_id] || session[:admin] %>
+					<small class="text-danger"><%= button_to "Удалить", question_path, method: :delete, params: {id: @question_required[:id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-link btn-sm nav-link" %></small>
+				<% end %>
 			</a>
 		</div>
 
@@ -36,8 +39,8 @@
 							<small class="text-muted"><%= qc[:created_at] %></small>
 						</div>
 						<p class="mb-1 text-break"><%= qc[:body] %></p>
-						<% if current_user[:id] == qc[:user_id] %>
-							<small class="text-danger"><%= button_to "Удалить", comment_path, method: :delete, params: {id: qc[:id], question_id: qc[:question_id]}, class: "btn btn-link btn-sm nav-link" %></small>
+						<% if current_user[:id] == qc[:user_id] || session[:admin] %>
+							<small class="text-danger"><%= button_to "Удалить", comment_path, method: :delete, params: {id: qc[:id], question_id: qc[:question_id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-link btn-sm nav-link" %></small>
 						<% end %>
 					</div>
 				<% end %>
