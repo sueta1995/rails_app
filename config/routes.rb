@@ -23,9 +23,11 @@ Rails.application.routes.draw do
   resource :nickname, only: %i[update]
   resource :password, only: %i[update]
   resource :comment, only: %i[destroy]
+  resource :ban, only: %i[destroy]
   resources :users, only: %i[new create]
   resources :verifications, only: %i[new create]
   resources :subscriptions, only: %i[new create]
   resources :questions, only: %i[new create]
   resources :comments, only: %i[new create]
+  resources :bans, only: %i[new create]
 end
