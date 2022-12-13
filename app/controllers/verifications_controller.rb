@@ -10,7 +10,10 @@ class VerificationsController < ApplicationController
 
   def create
     if @verifications_form_code == session[:ver_code]
-      User.create(session[:ver_params])
+      user = User.new(session[:ver_params])
+      user.save
+      
+      session[:user_id] = user[:id]
 
       delete_info
 
