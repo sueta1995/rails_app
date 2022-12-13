@@ -1,5 +1,7 @@
-class Subscription < ApplicationRecord
-	belongs_to :user
+# frozen_string_literal: true
 
-	validates :user_id, :follower_id, presence: { message: 'cannot be empty' }
+class Subscription < ApplicationRecord
+  belongs_to :user
+
+  validates :user_id, :follower_id, presence: { message: 'cannot be empty' }
 end

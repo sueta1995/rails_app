@@ -1,6 +1,8 @@
-class Question < ApplicationRecord
-	has_many :comments, dependent: :destroy
-	belongs_to :user
+# frozen_string_literal: true
 
-	validates :user_id, :body, presence: { message: 'cannot be empty' }
+class Question < ApplicationRecord
+  has_many :comments, dependent: :destroy
+  belongs_to :user
+
+  validates :user_id, :body, presence: { message: 'cannot be empty' }
 end

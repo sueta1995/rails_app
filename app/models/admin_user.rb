@@ -1,5 +1,7 @@
-class AdminUser < ApplicationRecord
-	belongs_to :user
+# frozen_string_literal: true
 
-	validates :user_id, presence: { message: 'cannot be empty' }
+class AdminUser < ApplicationRecord
+  belongs_to :user
+
+  validates :user_id, presence: { message: 'cannot be empty' }
 end

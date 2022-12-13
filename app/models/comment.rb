@@ -1,6 +1,8 @@
-class Comment < ApplicationRecord
-	belongs_to :user
-	belongs_to :question
+# frozen_string_literal: true
 
-	validates :user_id, :question_id, :body, presence: { message: 'cannot be empty' }
+class Comment < ApplicationRecord
+  belongs_to :user
+  belongs_to :question
+
+  validates :user_id, :question_id, :body, presence: { message: 'cannot be empty' }
 end
