@@ -16,7 +16,7 @@ class BansController < ApplicationController
     if @ban.save
       redirect_to(request.referrer, notice: 'Пользователь успешно заблокирован')
     else
-      redirect_to(request.referrer, alert: @ban.errors.full_messages[0])
+      redirect_to(request.referrer, alert: error_msg_banned_user(@ban))
     end
   end
 

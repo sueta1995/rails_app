@@ -15,7 +15,7 @@ class PasswordsController < ApplicationController
                     password_confirmation: @password_params[:new_password_confirmation])
       redirect_to('/users/edit', notice: 'Пароль успешно изменен')
     else
-      redirect_to('/users/edit', alert: @user.errors.full_messages[0])
+      redirect_to('/users/edit', alert: error_msg_user(@user))
     end
   end
 end

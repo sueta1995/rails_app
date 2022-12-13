@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to(request.referrer, notice: 'Вы успешно опубликовали запись')
     else
-      redirect_to(request.referrer, alert: @question.errors.full_messages[0])
+      redirect_to(request.referrer, alert: error_msg_question(@question))
     end
   end
 
