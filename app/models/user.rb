@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   has_one :banned_user, dependent: :destroy
   has_one :admin_user, dependent: :destroy
+  has_one :shadowbanned_user, dependent: :destroy
 
   # validates :nickname, presence: { message: 'Никнейм не может быть пустым' }
   # validates :email, presence: { message: 'Почта не может быть пустой' }
