@@ -5,11 +5,11 @@ class MainController < ApplicationController
   include MainHelper
 
   def index
-    if current_user.present?
-      @following_list = current_user.followings
+    return unless current_user.present?
 
-      create_questions_list
-    end
+    @following_list = current_user.followings
+
+    create_questions_list
   end
 
   def users

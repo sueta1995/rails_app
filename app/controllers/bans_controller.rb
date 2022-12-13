@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# class on bans controller
 class BansController < ApplicationController
   before_action :check_user, only: %i[new]
   before_action :set_params, only: %i[create]
@@ -5,8 +8,7 @@ class BansController < ApplicationController
 
   include BansHelper
 
-  def new
-  end
+  def new; end
 
   def create
     @ban = BannedUser.new(@ban_params)

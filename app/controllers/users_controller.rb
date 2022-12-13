@@ -10,12 +10,11 @@ class UsersController < ApplicationController
 
   include UsersHelper
 
-  def new
-  end
+  def new; end
 
   def create
     @user = User.new(@user_params)
-    
+
     if @user.validate
       create_ver
 
@@ -30,7 +29,7 @@ class UsersController < ApplicationController
 
   def show
     @user_required = User.find_by(id: params[:user_id])
-    
+
     set_info
   end
 
@@ -43,6 +42,5 @@ class UsersController < ApplicationController
   end
 
   # action for edit view
-  def edit
-  end
+  def edit; end
 end

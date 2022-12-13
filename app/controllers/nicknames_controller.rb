@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# class of nicknames controller
 class NicknamesController < ApplicationController
   before_action :set_update_params
   before_action :validation

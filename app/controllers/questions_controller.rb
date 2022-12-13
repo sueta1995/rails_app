@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
+# class of question controller
 class QuestionsController < ApplicationController
   before_action :set_params, only: %i[create]
 
   include QuestionsHelper
 
-  def new
-  end
+  def new; end
 
   def create
     @question = Question.new(body: @question_params[:body], user_id: current_user[:id])

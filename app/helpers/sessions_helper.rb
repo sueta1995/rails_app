@@ -13,6 +13,5 @@ module SessionsHelper
     session[:admin] = @user.admin_user.present?
   end
 
-  def validation
-  end
+  def validation; end
 end

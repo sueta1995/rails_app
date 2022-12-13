@@ -12,13 +12,16 @@ module UsersHelper
   end
 
   def set_info
-    if @user_required.present?
-      @is_user_banned = @user_required.banned_user.present?
-      @followers_count = @user_required.followers.count
-      @followings_count = @user_required.followings.count
-      @is_user_follower = Subscription.find_by(user_id: @user_required[:id], follower_id: current_user[:id]).present? if current_user.present?
-      @user_questions = @user_required.questions.reverse
+    return unless @user_required.present?
+
+    @is_user_banned = @user_required.banned_user.present?
+    @followers_count = @user_required.followers.count
+    @followings_count = @user_required.followings.count
+    if current_user.present?
+      @is_user_follower = Subscription.find_by(user_id: @user_required[:id],
+                                               follower_id: current_user[:id]).present?
     end
+    @user_questions = @user_required.questions.reverse
   end
 
   def set_destroy_params

@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
+# class of comments controller
 class CommentsController < ApplicationController
   before_action :set_params, only: %i[create]
 
   include CommentsHelper
 
-  def new
-  end
-  
+  def new; end
+
   def create
-    @comment = Comment.new(user_id: current_user[:id], question_id: @comment_params[:question_id], body: @comment_params[:body])
+    @comment = Comment.new(user_id: current_user[:id], question_id: @comment_params[:question_id],
+                           body: @comment_params[:body])
 
     if @comment.save
       redirect_to(request.referrer, notice: 'Вы успешно опубликовали комментарий')
