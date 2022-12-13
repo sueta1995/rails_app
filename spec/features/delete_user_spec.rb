@@ -4,15 +4,15 @@ require 'rails_helper'
 
 RSpec.describe 'delete exists user', type: :feature do
   scenario 'authentication and deletion' do
-    User.create(nickname: 'tagir', email: 'tagir@sueta.com', password: 'qwerty')
+    User.create(nickname: 'tagir', email: 'tagir@sueta.com', password: 'Aqwerty123!', password_confirmation: 'Aqwerty123!')
 
     visit new_session_path
 
     fill_in 'session[email]', with: 'tagir@sueta.com'
-    fill_in 'session[password]', with: 'qwerty'
+    fill_in 'session[password]', with: 'Aqwerty123!'
     click_on :commit
 
-    expect(page).to have_text('Вы упешно зашли в аккаунт!')
+    expect(page).to have_text('Вы успешно зашли в аккаунт!')
 
     find('#user-button').click
     find('#delete-user-button').click

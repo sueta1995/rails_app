@@ -4,15 +4,15 @@ require 'rails_helper'
 
 RSpec.describe 'list of questions at main#index', type: :feature do
   scenario 'follow another user, who post quetstion, and getting that at main#index' do
-    User.create(nickname: 'sueta', email: 'sueta@sue.ta', password: '12345678')
-    User.create(nickname: 'kto', email: 'kto@yandex.ru', password: 'qwerty1234567')
+    User.create(nickname: 'sueta', email: 'sueta@sueta.sueta', password: '12345678Aa!', password_confirmation: '12345678Aa!')
+    User.create(nickname: 'kto', email: 'kto@yandex.ru', password: '!Qqwerty1234567', password_confirmation: '!Qqwerty1234567')
 
     user_id_following = User.find_by(nickname: 'sueta')[:id]
 
     visit new_session_path
 
-    fill_in 'session[email]', with: 'sueta@sue.ta'
-    fill_in 'session[password]', with: '12345678'
+    fill_in 'session[email]', with: 'sueta@sueta.sueta'
+    fill_in 'session[password]', with: '12345678Aa!'
     click_on :commit
 
     find('#user-button').click
@@ -25,7 +25,7 @@ RSpec.describe 'list of questions at main#index', type: :feature do
     visit new_session_path
 
     fill_in 'session[email]', with: 'kto@yandex.ru'
-    fill_in 'session[password]', with: 'qwerty1234567'
+    fill_in 'session[password]', with: '!Qqwerty1234567'
     click_on :commit
 
     visit "/users/#{user_id_following}"

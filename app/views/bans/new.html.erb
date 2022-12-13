@@ -9,14 +9,14 @@
 <div class="row d-flex justify-content-center align-items-center">
 	<div class="col-12">
 		<p class="fw-bolder fs-4">Заблокировать пользователя</p>
-		<%= form_with scope: :user, url: bans_path, method: :post do |form| %>
+		<%= form_with scope: :ban_user, url: bans_path, method: :post do |form| %>
 			<%= form.label :user_id, 'Id пользователя', class: 'form-label' %>
 			<%= form.text_field :user_id, class: 'form-control', :required => true %>
 			<br>
             <%= form.label :reason, 'Причина блокировки', class: 'form-label' %>
             <%= form.text_field :reason, class: 'form-control', :required => true %>
             <br>
-			<%= form.submit 'Заблокировать', class: 'btn btn-dark fs-5' %>
+			<%= form.submit 'Заблокировать', id: 'ban-user-button', class: 'btn btn-dark fs-5' %>
 		<% end %>
 	</div>
 </div>
@@ -27,11 +27,11 @@
 <div class="row d-flex justify-content-center align-items-center">
 	<div class="col-12">
 		<p class="fw-bolder fs-4">Снять блокировку у пользователя</p>
-		<%= form_with scope: :user, url: ban_path, method: :delete do |form| %>
+		<%= form_with scope: :unban_user, url: ban_path, method: :delete do |form| %>
 			<%= form.label :user_id, 'Id пользователя', class: 'form-label' %>
 			<%= form.text_field :user_id, class: 'form-control', :required => true %>
 			<br>
-			<%= form.submit 'Разблокировать', class: 'btn btn-dark fs-5' %>
+			<%= form.submit 'Разблокировать', id: 'unban-user-button', class: 'btn btn-dark fs-5' %>
 		<% end %>
 	</div>
 </div>

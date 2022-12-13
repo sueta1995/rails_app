@@ -4,11 +4,11 @@ module BansHelper
 	end
 
 	def set_params
-		@ban_params = params.require(:user).permit(:user_id, :reason)
+		@ban_params = params.require(:ban_user).permit(:user_id, :reason)
 	end
 
 	def set_destroy_params
-		@ban_params = params.require(:user).permit(:user_id)
+		@ban_params = params.require(:unban_user).permit(:user_id)
 		@user = User.find_by(id: @ban_params[:user_id])
 	end
 end

@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'subscription', type: :feature do
   scenario 'authentication and subscription for another user' do
-    User.create(nickname: 'tagir', email: 'tagir@sueta.com', password: 'qwerty')
-    User.create(nickname: 'sueta', email: 'sueta@tagir.com', password: '12345678')
+    User.create(nickname: 'tagir', email: 'tagir@sueta.com', password: 'Qqwerty123$', password_confirmation: 'Qqwerty123$')
+    User.create(nickname: 'sueta', email: 'sueta@tagir.com', password: '12345678qweQWE@', password_confirmation: '12345678qweQWE@')
 
     user_id_following = User.find_by(nickname: 'sueta')[:id]
     user_id_follower = User.find_by(nickname: 'tagir')[:id]
@@ -13,10 +13,10 @@ RSpec.describe 'subscription', type: :feature do
     visit new_session_path
 
     fill_in 'session[email]', with: 'tagir@sueta.com'
-    fill_in 'session[password]', with: 'qwerty'
+    fill_in 'session[password]', with: 'Qqwerty123$'
     click_on :commit
 
-    expect(page).to have_text('Вы упешно зашли в аккаунт!')
+    expect(page).to have_text('Вы успешно зашли в аккаунт!')
 
     visit "/users/#{user_id_following}"
 

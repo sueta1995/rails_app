@@ -4,15 +4,15 @@ require 'rails_helper'
 
 RSpec.describe 'user authentication', type: :feature do
   scenario 'registration and authentication' do
-    User.create(nickname: 'sueta', email: 'sueta@sue.ta', password: '12345678')
+    User.create(nickname: 'sueta', email: 'sueta@sueta.sueta', password: 'Aa123!', password_confirmation: 'Aa123!')
 
     visit new_session_path
 
-    fill_in 'session[email]', with: 'sueta@sue.ta'
-    fill_in 'session[password]', with: '12345678'
+    fill_in 'session[email]', with: 'sueta@sueta.sueta'
+    fill_in 'session[password]', with: 'Aa123!'
     click_on :commit
 
-    expect(page).to have_text('Вы упешно зашли в аккаунт!')
+    expect(page).to have_text('Вы успешно зашли в аккаунт!')
 
     find('#exit-button').click
 

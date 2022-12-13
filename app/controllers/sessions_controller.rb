@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       else
         set_info
 
-        redirect_to root_path, notice: 'Вы упешно зашли в аккаунт!'
+        redirect_to root_path, notice: 'Вы успешно зашли в аккаунт!'
       end
     else
       flash.now[:alert] = 'Неправильные email или пароль!'

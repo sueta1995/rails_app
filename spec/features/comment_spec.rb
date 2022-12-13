@@ -22,5 +22,15 @@ RSpec.describe 'questions', type: :feature do
 		expect(Question.find_by(user_id: user_id, body: 'Всем привет!').present?).to eq true
 		expect(page).to have_text('Вы успешно опубликовали запись')
 		expect(page).to have_text('Всем привет!')
+
+        question_id = Question.find_by(user_id: user_id)[:id]
+
+        visit "/questions/#{question_id}"
+
+        fill_in 'comment[body]', with: 'Комментарий'
+        click_on :commit
+
+        expect(page).to have_text('Вы успешно опубликовали комментарий')
+        expect(page).to have_text('Комментарий')
 	end
 end
