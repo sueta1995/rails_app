@@ -20,14 +20,14 @@ RSpec.describe User, type: :model do
         user = User.new(nickname: 's', email: 'sueta@sueta.sueta', password: 'Aa123!', password_confirmation: 'Aa123!')
         user.save
 
-        expect(user.errors.full_messages[0]).to eq "Nickname should be valid"
+        expect(user.errors.full_messages[0]).to eq "Nickname Никнейм должен быть валидным"
 			end
 
 			it 'returns error message, invalid email' do
 				user = User.new(nickname: 'sueta', email: 'sueta@sueta.', password: 'Aa123!', password_confirmation: 'Aa123!')
         user.save
 
-        expect(user.errors.full_messages[0]).to eq "Email should be valid"
+        expect(user.errors.full_messages[0]).to eq "Email Почта должна быть валидной"
 			end
     end
   end
