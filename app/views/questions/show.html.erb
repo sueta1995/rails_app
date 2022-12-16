@@ -1,5 +1,5 @@
 <% if current_user.present? %>
-	<% if @question_required.present? %>
+	<% if @question_required.present? && (!@question_user_banned && !@question_user_shadowbanned || current_user == @question_user) %>
 		<h1 class="display-6">Информация о записи</h1>
 
 		<br>
