@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   before_action :set_params, only: %i[create]
   before_action :set_destroy_params, only: %i[destroy]
   before_action :check_edit, only: %i[edit]
+  before_action :set_show_params, only: %i[show]
+  before_action :is_current_user_can_check, only: %i[show]
 
   # after_action :set_info, only: %i[show]
 
@@ -28,8 +30,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user_required = User.find_by(id: params[:user_id])
-
     set_info
   end
 

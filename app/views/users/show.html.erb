@@ -45,7 +45,7 @@
 		<br>
 		<hr/>
 
-		<% if @user_questions.empty? %>
+		<% if @user_questions.empty? && is_current_user_can_check %>
 			<p class="fw-bolder fs-4">Записей еще нет...</p>
 		<% end %>
 
@@ -57,33 +57,37 @@
 			<% end %>
 		<% end %>
 
-		<% if @user_questions.present? %>
-			<br>
-			<% if !@is_user_banned && !@is_user_shadowbanned || current_user == @user_required %>
-				<p class="fw-bolder fs-2">Записи от <%= @user_required[:nickname] %></p>
+		<% if is_current_user_can_check %>
+			<% if @user_questions.present? %>
+				<br>
+				<% if !@is_user_banned && !@is_user_shadowbanned || current_user == @user_required %>
+					<p class="fw-bolder fs-2">Записи от <%= @user_required[:nickname] %></p>
 
-				<% @user_questions.each do |uq| %>
-					<div class="list-group">
-						<div class="list-group-item list-group-item-action">
-							<div class="d-flex w-100 justify-content-between">
-								<h5 class="mb-1"><%= button_to @user_required[:nickname], "/users/#{uq[:user_id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></h5>
-								<small class="text-secondary"><%= uq[:created_at] %></small>
+					<% @user_questions.each do |uq| %>
+						<div class="list-group">
+							<div class="list-group-item list-group-item-action">
+								<div class="d-flex w-100 justify-content-between">
+									<h5 class="mb-1"><%= button_to @user_required[:nickname], "/users/#{uq[:user_id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></h5>
+									<small class="text-secondary"><%= uq[:created_at] %></small>
+								</div>
+								<p class="mb-1 text-break">
+									<%= uq[:body] %>
+								</p>
+								<small class="text-secondary"><%= button_to "Комментарии (#{comments_count(uq[:id])})", "/questions/#{uq[:id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></small>
+								<% if current_user == @user_required || session[:admin] %>
+									<small class="text-danger"><%= button_to "Удалить", question_path, method: :delete, params: {id: uq[:id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-link btn-sm nav-link" %></small>
+								<% end %>
 							</div>
-							<p class="mb-1 text-break">
-								<%= uq[:body] %>
-							</p>
-							<small class="text-secondary"><%= button_to "Комментарии (#{comments_count(uq[:id])})", "/questions/#{uq[:id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></small>
-							<% if current_user == @user_required || session[:admin] %>
-								<small class="text-danger"><%= button_to "Удалить", question_path, method: :delete, params: {id: uq[:id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-link btn-sm nav-link" %></small>
-							<% end %>
 						</div>
-					</div>
+					<% end %>
+				<% elsif @is_user_banned && !@is_user_shadowbanned %>
+					<p class="fw-bolder fs-2">Записи скрыты</p>
+				<% elsif @is_user_shadowbanned %>
+					<p class="fw-bolder fs-2">Записей еще нет...</p>
 				<% end %>
-			<% elsif @is_user_banned && !@is_user_shadowbanned %>
-				<p class="fw-bolder fs-2">Записи скрыты</p>
-			<% elsif @is_user_shadowbanned %>
-				<p class="fw-bolder fs-2">Записей еще нет...</p>
 			<% end %>
+		<% else %>
+			<p class="fw-bolder fs-2">Подпишитесь на данного пользователя, чтобы смотреть его записи</p>
 		<% end %>
 
     <% if @user_required == current_user %>

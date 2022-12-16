@@ -1,53 +1,57 @@
 <% if current_user.present? %>
 	<% if @question_required.present? && (!@question_user_banned && !@question_user_shadowbanned || current_user == @question_user) %>
-		<h1 class="display-6">Информация о записи</h1>
+		<% if @can_check %>
+			<h1 class="display-6">Информация о записи</h1>
 
-		<br>
+			<br>
 
-		<div class="list-group">
-			<a class="list-group-item list-group-item-action">
-				<div class="d-flex w-100 justify-content-between">
-					<h5 class="mb-1"><%= button_to @question_user[:nickname], "/users/#{@question_user[:id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></h5>
-					<small class="text-secondary"><%= @question_required[:created_at] %></small>
-				</div>
-				<p class="mb-1 text-break">
-					<%= @question_required[:body] %>
-				</p>
-				<% if current_user[:id] == @question_required[:user_id] || session[:admin] %>
-					<small class="text-danger"><%= button_to "Удалить", question_path, method: :delete, params: {id: @question_required[:id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-link btn-sm nav-link" %></small>
-				<% end %>
-			</a>
-		</div>
-
-		<p class="fw-bolder fs-4">Комментарии</p>
-
-		<%= form_with scope: :comment, url: comments_path, data: {turbo: false} do |form| %>
-			<%= form.label :body, 'Новый комментарий', class: 'form-label' %><br>
-			<%= form.text_area :body, class: 'form-control form-control' %><br>
-			<%= form.hidden_field :question_id, value: @question_required[:id] %>
-			<%= form.submit 'Опубликовать', class: 'btn btn-outline-light btn-dark' %><br>
-		<% end %>
-
-		<br>
-
-		<% if @question_comments.present? %>
 			<div class="list-group">
-				<% @question_comments.each do |qc| %>
-					<div class="list-group-item list-group-item-action">
-						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1"><%= button_to qc.user.nickname, "/users/#{qc.user.id}", method: :get, class: "btn btn-link btn-sm nav-link" %></h5>
-							<small class="text-muted"><%= qc[:created_at] %></small>
-						</div>
-						<p class="mb-1 text-break"><%= qc[:body] %></p>
-						<% if current_user[:id] == qc[:user_id] || session[:admin] %>
-							<small class="text-danger"><%= button_to "Удалить", comment_path, method: :delete, params: {id: qc[:id], question_id: qc[:question_id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-link btn-sm nav-link" %></small>
-						<% end %>
+				<a class="list-group-item list-group-item-action">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1"><%= button_to @question_user[:nickname], "/users/#{@question_user[:id]}", method: :get, class: "btn btn-link btn-sm nav-link" %></h5>
+						<small class="text-secondary"><%= @question_required[:created_at] %></small>
 					</div>
-				<% end %>
+					<p class="mb-1 text-break">
+						<%= @question_required[:body] %>
+					</p>
+					<% if current_user[:id] == @question_required[:user_id] || session[:admin] %>
+						<small class="text-danger"><%= button_to "Удалить", question_path, method: :delete, params: {id: @question_required[:id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-link btn-sm nav-link" %></small>
+					<% end %>
+				</a>
 			</div>
+
+			<p class="fw-bolder fs-4">Комментарии</p>
+
+			<%= form_with scope: :comment, url: comments_path, data: {turbo: false} do |form| %>
+				<%= form.label :body, 'Новый комментарий', class: 'form-label' %><br>
+				<%= form.text_area :body, class: 'form-control form-control' %><br>
+				<%= form.hidden_field :question_id, value: @question_required[:id] %>
+				<%= form.submit 'Опубликовать', class: 'btn btn-outline-light btn-dark' %><br>
+			<% end %>
+
+			<br>
+
+			<% if @question_comments.present? %>
+				<div class="list-group">
+					<% @question_comments.each do |qc| %>
+						<div class="list-group-item list-group-item-action">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class="mb-1"><%= button_to qc.user.nickname, "/users/#{qc.user.id}", method: :get, class: "btn btn-link btn-sm nav-link" %></h5>
+								<small class="text-muted"><%= qc[:created_at] %></small>
+							</div>
+							<p class="mb-1 text-break"><%= qc[:body] %></p>
+							<% if current_user[:id] == qc[:user_id] || session[:admin] %>
+								<small class="text-danger"><%= button_to "Удалить", comment_path, method: :delete, params: {id: qc[:id], question_id: qc[:question_id]}, form: {data: {turbo_confirm: 'Вы уверены?'}}, class: "btn btn-link btn-sm nav-link" %></small>
+							<% end %>
+						</div>
+					<% end %>
+				</div>
+			<% else %>
+				<p class="mb-1">Комментарии отсутствуют</p>
+			<% end %>
 		<% else %>
-			<p class="mb-1">Комментарии отсутствуют</p>
-		<% end %>
+			<h1 class="display-6">Чтобы смотреть данную запись, необходимо подписаться на ее автора</h1>
+		<% end%>
 
 	<% else %>
 		<h1 class="display-6">Данная запись не существует</h1>

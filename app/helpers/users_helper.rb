@@ -36,4 +36,16 @@ module UsersHelper
   def check_edit
     redirect_to(root_path, alert: 'Вы не можете перейти на данную страницу!') if current_user.nil?
   end
+
+  def set_show_params
+    @user_required = User.find_by(id: params[:user_id])
+  end
+
+  def is_current_user_can_check
+    if @user_required.is_private
+      @user_required.followers.find_by(follower_id: current_user.id).present? || current_user == @user_required
+    else
+      true
+    end
+  end
 end
