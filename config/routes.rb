@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'privates/update'
   root to: "main#index"
 
   get 'main/index'
