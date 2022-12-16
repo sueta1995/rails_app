@@ -59,7 +59,7 @@
 
 		<% if @user_questions.present? %>
 			<br>
-			<% if !@is_user_banned %>
+			<% if !@is_user_banned && !@is_user_shadowbanned %>
 				<p class="fw-bolder fs-2">Записи от <%= @user_required[:nickname] %></p>
 
 				<% @user_questions.each do |uq| %>
@@ -79,8 +79,10 @@
 						</div>
 					</div>
 				<% end %>
-			<% else %>
+			<% elsif @is_user_banned && !@is_user_shadowbanned %>
 				<p class="fw-bolder fs-2">Записи скрыты</p>
+			<% elsif @is_user_shadowbanned %>
+				<p class="fw-bolder fs-2">Записей еще нет...</p>
 			<% end %>
 		<% end %>
 

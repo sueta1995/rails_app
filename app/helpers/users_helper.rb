@@ -22,6 +22,7 @@ module UsersHelper
                                                follower_id: current_user[:id]).present?
     end
     @user_questions = @user_required.questions.reverse
+    @is_user_shadowbanned = @user_required.shadowbanned_user.present?
   end
 
   def set_destroy_params

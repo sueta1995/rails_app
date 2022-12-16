@@ -13,7 +13,7 @@ class NicknamesController < ApplicationController
     if @user.update_column(:nickname, @nickname_params[:nickname])
       redirect_to(request.referrer, notice: 'Никнейм успешно изменен')
     else
-      redirect_to(request.referrer, alert: @user.errors.full_messages[0])
+      redirect_to(request.referrer, alert: error_msg_user(@user))
     end
   end
 end
