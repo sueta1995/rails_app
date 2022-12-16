@@ -35,4 +35,34 @@
 		<% end %>
 	</div>
 </div>
+
 <br>
+<hr/>
+<br>
+
+<div class="row d-flex justify-content-center align-items-center">
+	<div class="col-12">
+		<p class="fw-bolder fs-4">Дать теневую блокировку пользователю</p>
+		<%= form_with scope: :shadowban_user, url: shadowbans_path, method: :post do |form| %>
+			<%= form.label :user_id, 'Id пользователя', class: 'form-label' %>
+			<%= form.text_field :user_id, class: 'form-control', :required => true %>
+			<br>
+			<%= form.submit 'Заблокировать', id: 'shadowban-user-button', class: 'btn btn-dark fs-5' %>
+		<% end %>
+	</div>
+</div>
+
+<br>
+<br>
+
+<div class="row d-flex justify-content-center align-items-center">
+	<div class="col-12">
+		<p class="fw-bolder fs-4">Снять теневую блокировку у пользователя</p>
+		<%= form_with scope: :shadowunban_user, url: shadowban_path, method: :delete do |form| %>
+			<%= form.label :user_id, 'Id пользователя', class: 'form-label' %>
+			<%= form.text_field :user_id, class: 'form-control', :required => true %>
+			<br>
+			<%= form.submit 'Разблокировать', id: 'unban-user-button', class: 'btn btn-dark fs-5' %>
+		<% end %>
+	</div>
+</div>

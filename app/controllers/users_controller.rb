@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       UserMailer.with(user: session[:ver_params], code: session[:ver_code]).send_code.deliver_now
       redirect_to '/verifications/new'
     else
-      flash.now[:alert] = @user.errors.full_messages[0]
+      flash.now[:alert] = error_msg_user(@user)
 
       render :new
     end

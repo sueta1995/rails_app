@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to(request.referrer, notice: 'Вы успешно опубликовали комментарий')
     else
-      redirect_to(request.referrer, alert: @comment.errors.full_messages[0])
+      redirect_to(request.referrer, alert: error_msg_comment(@comment))
     end
   end
 
