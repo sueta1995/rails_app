@@ -42,7 +42,7 @@ module UsersHelper
   end
 
   def is_current_user_can_check
-    if @user_required.is_private
+    if @user_required.is_private && current_user.present?
       @user_required.followers.find_by(follower_id: current_user.id).present? || current_user == @user_required
     else
       true
