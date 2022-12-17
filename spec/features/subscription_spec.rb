@@ -4,8 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'subscription', type: :feature do
   scenario 'authentication and subscription for another user' do
-    User.create(nickname: 'tagir3', email: 'tagir3@sueta.com', password: 'Qqwerty123$', password_confirmation: 'Qqwerty123$')
-    User.create(nickname: 'sueta', email: 'sueta@tagir.com', password: '12345678qweQWE@', password_confirmation: '12345678qweQWE@')
+    User.create(nickname: 'tagir3', email: 'tagir3@sueta.com', password: 'Qqwerty123$',
+                password_confirmation: 'Qqwerty123$')
+    User.create(nickname: 'sueta', email: 'sueta@tagir.com', password: '12345678qweQWE@',
+                password_confirmation: '12345678qweQWE@')
 
     user_id_following = User.find_by(nickname: 'sueta')[:id]
     user_id_follower = User.find_by(nickname: 'tagir3')[:id]

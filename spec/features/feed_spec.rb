@@ -4,8 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'list of questions at main#index', type: :feature do
   scenario 'follow another user, who post quetstion, and getting that at main#index' do
-    User.create(nickname: 'sueta', email: 'sueta@sueta.sueta', password: '12345678Aa!', password_confirmation: '12345678Aa!')
-    User.create(nickname: 'kto', email: 'kto@yandex.ru', password: '!Qqwerty1234567', password_confirmation: '!Qqwerty1234567')
+    User.create(nickname: 'sueta', email: 'sueta@sueta.sueta', password: '12345678Aa!',
+                password_confirmation: '12345678Aa!')
+    User.create(nickname: 'kto', email: 'kto@yandex.ru', password: '!Qqwerty1234567',
+                password_confirmation: '!Qqwerty1234567')
 
     user_id_following = User.find_by(nickname: 'sueta')[:id]
 
