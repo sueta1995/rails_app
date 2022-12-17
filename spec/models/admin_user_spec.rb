@@ -29,6 +29,15 @@ RSpec.describe AdminUser, type: :model do
         
         expect(admin.errors.full_messages[0]).to eq "User must exist"
       end
+
+      it 'returns error message, exists' do
+        AdminUser.create(user_id: user[:id])
+
+        admin = AdminUser.new(user_id: user[:id])
+        admin.save
+
+        expect(admin.errors.full_messages[0]).to eq "User Данный пользователь уже является администратором"
+      end
     end
   end
 end

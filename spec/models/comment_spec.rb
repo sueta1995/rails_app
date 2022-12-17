@@ -27,6 +27,20 @@ RSpec.describe Comment, type: :model do
         
         expect(comment.errors.full_messages[0]).to eq "Question must exist"
       end
+
+      it 'returns error message, user_id is null' do
+        comment = Comment.new(question_id: question[:id])
+        comment.save
+
+        expect(comment.errors.full_messages[0]).to eq "User must exist"
+      end
+
+      it 'returns error message, body is null' do
+        comment = Comment.new(user_id: user[:id], question_id: question[:id])
+        comment.save
+
+        expect(comment.errors.full_messages[0]).to eq "Body Тело комментария не может быть пустым"
+      end
     end
   end
 end

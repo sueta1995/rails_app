@@ -22,6 +22,13 @@ RSpec.describe Comment, type: :model do
         
         expect(question.errors.full_messages[0]).to eq "Body Тело записи не может быть пустым"
       end
+
+      it 'returns error message, user_id is null' do
+        question = Question.new(body: 'hello')
+        question.save
+
+        expect(question.errors.full_messages[0]).to eq "User must exist"
+      end
     end
   end
 end
