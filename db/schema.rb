@@ -35,6 +35,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_17_124010) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "dialogues", force: :cascade do |t|
+    t.integer "first_user_id"
+    t.integer "second_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "dialogue_id"
+    t.integer "sender_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text "body"
     t.integer "user_id"

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# class of shadowbans controller
 class ShadowbansController < ApplicationController
   before_action :set_params, only: %i[create]
   before_action :set_destroy_params, only: %i[destroy]

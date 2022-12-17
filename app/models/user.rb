@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class of User model
 class User < ApplicationRecord
   before_validation :set_defaults
 

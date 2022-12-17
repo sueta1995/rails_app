@@ -5,6 +5,6 @@ class BannedUser < ApplicationRecord
 
   validates :user_id, presence: { message: 'Идентификатор не может быть пустым' }
   validates :reason, presence: { message: 'Причина не может быть пустой' }
-  
+
   validates :user_id, uniqueness: { message: 'Данный пользователь уже заблокирован' }
 end

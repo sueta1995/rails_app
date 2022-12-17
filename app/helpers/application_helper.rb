@@ -34,7 +34,7 @@ module ApplicationHelper
     user_id_e = banned_user.errors.messages_for(:user_id)
     reason_e = banned_user.errors.messages_for(:reason)
 
-    find_rus(user_id_e +  reason_e)
+    find_rus(user_id_e + reason_e)
   end
 
   def error_msg_shadowbanned_user(shadowbanned_user)
@@ -44,6 +44,6 @@ module ApplicationHelper
   end
 
   def find_rus(array)
-    array.join(", ").split(" ").select { |x| /[ а-яА-Я]/.match(x) }.join(" ")
+    array.join(', ').split(' ').select { |x| /[ а-яА-Я]/.match(x) }.join(' ')
   end
 end

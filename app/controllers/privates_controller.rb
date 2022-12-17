@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# class of privates controller
 class PrivatesController < ApplicationController
   before_action :set_update_params
 

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# helper fo shadowbans controller
 module ShadowbansHelper
-	def set_params
+  def set_params
     @shadowban_params = params.require(:shadowban_user).permit(:user_id)
   end
 
