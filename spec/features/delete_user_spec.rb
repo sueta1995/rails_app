@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'delete exists user', type: :feature do
   scenario 'authentication and deletion' do
-    User.create(nickname: 'tagir', email: 'tagir@sueta.com', password: 'Aqwerty123!', password_confirmation: 'Aqwerty123!')
+    User.create(nickname: 'tagir', email: 'tagir@sueta.com', password: 'Aqwerty123!',
+                password_confirmation: 'Aqwerty123!')
 
     visit new_session_path
 
