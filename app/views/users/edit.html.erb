@@ -8,6 +8,16 @@
 
 <div class="row d-flex justify-content-center align-items-center">
 	<div class="col-12">
+		<p class="fw-bolder fs-4">Изменить приватность аккаунта</p>
+		<%= button_to "Изменить приватность", private_path, method: :patch, id: 'update-private-user-button', class: "btn btn-dark fw-bolder" %>
+	</div>
+</div>
+
+<br>
+<br>
+
+<div class="row d-flex justify-content-center align-items-center">
+	<div class="col-12">
 		<p class="fw-bolder fs-4">Изменить никнейм</p>
 		<%= form_with scope: :user_nickname, url: nickname_path, method: :patch do |form| %>
 			<%= form.label :nickname, 'Новый никнейм', class: 'form-label' %>

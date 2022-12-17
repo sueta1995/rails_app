@@ -8,7 +8,7 @@ module MainHelper
     @following_list.each do |fl|
       user = User.find(fl[:user_id])
 
-      @questions_list += user.questions if user.banned_user.nil?
+      @questions_list += user.questions if user.banned_user.nil? && user.shadowbanned_user.nil?
     end
 
     @questions_list = @questions_list.sort_by(&:created_at).reverse

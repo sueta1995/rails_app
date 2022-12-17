@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resource :comment, only: %i[destroy]
   resource :ban, only: %i[destroy]
   resource :shadowban, only: %i[destroy]
+  resource :private, only: %i[update]
   resources :users, only: %i[new create]
   resources :verifications, only: %i[new create]
   resources :subscriptions, only: %i[new create]

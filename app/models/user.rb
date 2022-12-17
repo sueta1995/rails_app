@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  before_validation :set_defaults
+
   has_secure_password
 
   has_many :comments, dependent: :destroy
@@ -37,4 +39,10 @@ class User < ApplicationRecord
   }
 
   validates :password, confirmation: { message: 'Пароли не совпадают' }
+
+  private
+
+  def set_defaults
+    self.is_private = false
+  end
 end
