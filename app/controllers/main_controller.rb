@@ -15,4 +15,8 @@ class MainController < ApplicationController
   def users
     @users = User.all
   end
+
+  def dialogues
+    @dialogues = current_user.dialogues_first + current_user.dialogues_second
+  end
 end

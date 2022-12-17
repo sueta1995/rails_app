@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get 'main/ipl'
   get 'main/contacts'
   get 'main/users'
+  get 'main/messenger'
   get 'main', to: 'main#index'
+  get '/main/dialogues' => 'main#dialogues'
 
   get '/users/new', to: 'users#new'
   get '/users/edit', to: 'users#edit'

@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :followers, class_name: 'Subscription', foreign_key: 'user_id', dependent: :destroy
   has_many :followings, class_name: 'Subscription', foreign_key: 'follower_id', dependent: :destroy
 
+  has_many :dialogues_first, class_name: 'Dialogue', foreign_key: 'first_user_id', dependent: :destroy
+  has_many :dialogues_second, class_name: 'Dialogue', foreign_key: 'second_user_id', dependent: :destroy
+
   has_one :banned_user, dependent: :destroy
   has_one :admin_user, dependent: :destroy
   has_one :shadowbanned_user, dependent: :destroy
