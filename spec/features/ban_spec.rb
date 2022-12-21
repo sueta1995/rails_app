@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
+# Созданный пользователь добавляется в таблицу забаненных пользователей.
+# Проверяется невозможность входа этого пользователя.
 RSpec.describe 'ban users', type: :feature do
   scenario 'authentication if user has been banned' do
     User.create(nickname: 'sueta', email: 'sueta@sueta.sueta', password: 'Aa123!', password_confirmation: 'Aa123!')

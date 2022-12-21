@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
+# Создаются два пользователя. Первый пользователь подписывается на второго.
+# Проверяется правильность отображения списка подписчиков и подписок.
 RSpec.describe 'subscription', type: :feature do
   scenario 'authentication and subscription for another user' do
     User.create(nickname: 'tagir3', email: 'tagir3@sueta.com', password: 'Qqwerty123$',

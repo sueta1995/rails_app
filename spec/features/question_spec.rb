@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
+# Создается пользователь, который создает запись.
+# Проверяется существование новой записи в таблице и правильность ее отображения.
 RSpec.describe 'questions', type: :feature do
   scenario 'creating new questions' do
     User.create(nickname: 'sueta', email: 'sueta@sueta.sueta', password: 'QQQaaa12345678#',

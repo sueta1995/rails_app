@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
+# Создаются два пользователя, первый создает запись и делает аккаунт приватным.
+# Проверяется невозможность просмотра записей первого пользователя, если второй не подписан.
 RSpec.describe 'private profiles', type: :feature do
   scenario 'checking private system working' do
     User.create(nickname: 'sueta', email: 'sueta@sueta.sueta', password: '12345678Aa!',

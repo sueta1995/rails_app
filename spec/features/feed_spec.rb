@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
+# Создается два пользователя, один из которых создает запись, а второй подписывается на первого.
+# Проверяется правильность отображения в ленте записей первого пользователя записи второго.
 RSpec.describe 'list of questions at main#index', type: :feature do
   scenario 'follow another user, who post quetstion, and getting that at main#index' do
     User.create(nickname: 'sueta', email: 'sueta@sueta.sueta', password: '12345678Aa!',

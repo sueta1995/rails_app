@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# Проверка отсутствия в таблице пользователя, который удалил свой аккаунт
 RSpec.describe 'delete exists user', type: :feature do
   scenario 'authentication and deletion' do
     User.create(nickname: 'tagir', email: 'tagir@sueta.com', password: 'Aqwerty123!',

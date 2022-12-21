@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
+# Проверяем систему администраторов, создается два пользователя, один из которых добавляется в таблицу администраторов.
+# Дальше пользователь, который теперь админ, банит другого. Проверяется невозможность входа вторым пользователем.
 RSpec.describe 'ban users', type: :feature do
   scenario 'authentication if user has been banned' do
     User.create(nickname: 'sueta', email: 'sueta@sueta.sueta', password: 'Aa123!', password_confirmation: 'Aa123!')

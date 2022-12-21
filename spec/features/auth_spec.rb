@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# Проверка создания нового пользователя и его авторизации
 RSpec.describe 'user authentication', type: :feature do
   scenario 'registration and authentication' do
     User.create(nickname: 'sueta', email: 'sueta@sueta.sueta', password: 'Aa123!', password_confirmation: 'Aa123!')

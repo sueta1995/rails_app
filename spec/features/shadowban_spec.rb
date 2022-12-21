@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
+# Создаются два пользователя. Первый получает теневую блокировку и создает.
+# Проверяется невозможность просмотра записи вторым пользователем.
 RSpec.describe 'shadowban users', type: :feature do
   scenario 'new questions if user has been shadowbanned' do
     User.create(nickname: 'sueta1', email: 'sueta1@sueta.sueta', password: 'Aa123!', password_confirmation: 'Aa123!')

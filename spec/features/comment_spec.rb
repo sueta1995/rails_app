@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# Проверка правильного отображения комментариев на записи созданной пользователем
 RSpec.describe 'questions', type: :feature do
   scenario 'creating new questions' do
     User.create(nickname: 'sueta', email: 'sueta@sueta.sueta', password: 'QQQaaa12345678#',
